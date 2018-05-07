@@ -5,7 +5,7 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div style={{padding: 10}}>
+      <div style={{padding: 10, overflow: 'hidden'}}>
         <Scoreboard />
       </div>
     );

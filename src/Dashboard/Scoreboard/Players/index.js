@@ -2,22 +2,21 @@ import React, { Component } from 'react';
 import Grid from 'material-ui/Grid';
 import TextField from 'material-ui/TextField';
 
-import Event from './Event';
-import Players from './Players';
+import Player from './Player';
 
 import { withStyles } from 'material-ui/styles';
 
-class Scoreboard extends Component {
+class Players extends Component {
 
   render() {
     const { classes } = this.props;
     return (
-      <Grid container direction='column' spacing={16}>
+      <Grid container direction='row' spacing={16}>
         <Grid item>
-          <Event />
+          <Player number={1} />
         </Grid>
         <Grid item>
-          <Players />
+          <Player number={2} />
         </Grid>
       </Grid>
     );
@@ -30,4 +29,4 @@ const styles = theme => ({
   }
 });
 
-export default withStyles(styles)(Scoreboard);
+export default withStyles(styles)(Players);
