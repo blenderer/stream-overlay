@@ -27,6 +27,8 @@ class Game extends Component {
 
   render() {
     const { classes } = this.props;
+    const { format } = this.state;
+
     return (
       <Grid container direction='column' spacing={16}>
         <Grid item>
@@ -38,7 +40,7 @@ class Game extends Component {
             <RadioGroup
               aria-label="format"
               name="format"
-              value={this.state.format}
+              value={format}
               onChange={this.handleFormatChange}
             >
               <FormControlLabel value="bo3" control={<Radio />} label="Best of 3" />
@@ -59,7 +61,10 @@ class Game extends Component {
                 >
                   <FormControlLabel value="0" control={<Radio />} label="0" />
                   <FormControlLabel value="1" control={<Radio />} label="1" />
-                  <FormControlLabel value="2" control={<Radio />} label="2" />
+                  {
+                    format === 'bo5' &&
+                    <FormControlLabel value="2" control={<Radio />} label="2" />
+                  }
                 </RadioGroup>
               </FormControl>
             </Grid>
@@ -74,7 +79,11 @@ class Game extends Component {
                 >
                   <FormControlLabel value="0" control={<Radio />} label="0" />
                   <FormControlLabel value="1" control={<Radio />} label="1" />
-                  <FormControlLabel value="2" control={<Radio />} label="2" />
+                  {
+                    format === 'bo5' &&
+                    <FormControlLabel value="2" control={<Radio />} label="2" />
+                  }
+
                 </RadioGroup>
               </FormControl>
             </Grid>

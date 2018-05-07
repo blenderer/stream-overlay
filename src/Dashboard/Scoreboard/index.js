@@ -4,8 +4,7 @@ import TextField from 'material-ui/TextField';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
 import Event from './Event';
-import Players from './Players';
-import Game from './Game';
+import CurrentSet from './CurrentSet';
 
 import { withStyles } from 'material-ui/styles';
 
@@ -26,12 +25,10 @@ class Scoreboard extends Component {
       <React.Fragment>
         <Tabs style={{marginBottom: 15}} value={value} onChange={this.handleChange}>
           <Tab label="Event Info" />
-          <Tab label="Player Info" />
-          <Tab label="Game Info" />
+          <Tab label="Current Set" />
         </Tabs>
         {value === 0 && <Event />}
-        {value === 1 && <Players />}
-        {value === 2 && <Game />}
+        {value === 1 && <CurrentSet />}
       </React.Fragment>
     );
   }

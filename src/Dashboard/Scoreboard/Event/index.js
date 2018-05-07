@@ -26,7 +26,7 @@ class Event extends Component {
           <TextField placeholder='Event Location' />
         </Grid>
         <Grid item>
-          <TextField placeholder='Game' />
+          <TextField placeholder='Video Game' />
         </Grid>
         <Grid item>
           <FormControl component="fieldset">

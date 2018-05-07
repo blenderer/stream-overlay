@@ -38,7 +38,7 @@
       {
         "name": "scoreboard",
         "title": "Scoreboard",
-        "width": 2,
+        "width": 4,
         "file": "index.html",
         "headerColor": "#9f9bbd"
       }
