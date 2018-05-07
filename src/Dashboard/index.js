@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import TextField from 'material-ui/TextField';
+import Scoreboard from './Scoreboard';
 
 class Dashboard extends Component {
 
   render() {
     return (
       <div style={{padding: 10}}>
-        <TextField placeholder='hello world' />
+        <Scoreboard />
       </div>
     );
   }
