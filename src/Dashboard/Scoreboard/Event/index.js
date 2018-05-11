@@ -8,25 +8,49 @@ import { withStyles } from 'material-ui/styles';
 
 class Event extends Component {
   state = {
-    format: 'singles'
+    format: 'singles',
+    eventName: 'Vista Tech Those # 33',
+    eventLocation: 'Livonia, MI',
+    videoGame: 'Smash 4'
   };
 
   handleFormatChange = event => {
     this.setState({ format: event.target.value });
   };
 
+  handleChange = (key, value) => {
+    this.setState({ [key]: value });
+  }
+
   render() {
     const { classes } = this.props;
+    const state = this.state;
+
     return (
       <Grid item container direction='column' spacing={16}>
         <Grid item>
-          <TextField placeholder='Event Name' />
+          <TextField
+            label='Event Name'
+            onChange={(e) => {this.handleChange('eventName', e.target.value)}}
+            value={state.eventName}
+            placeholder='Event Name'
+          />
         </Grid>
         <Grid item>
-          <TextField placeholder='Event Location' />
+          <TextField
+            label='Event Location'
+            onChange={(e) => {this.handleChange('eventLocation', e.target.value)}}
+            value={state.eventLocation}
+            placeholder='Event Location'
+          />
         </Grid>
         <Grid item>
-          <TextField placeholder='Video Game' />
+          <TextField
+            label='Video Game'
+            onChange={(e) => {this.handleChange('videoGame', e.target.value)}}
+            value={state.videoGame}
+            placeholder='Video Game'
+          />
         </Grid>
         <Grid item>
           <FormControl component="fieldset">
@@ -35,7 +59,9 @@ class Event extends Component {
               aria-label="format"
               name="format"
               value={this.state.format}
-              onChange={this.handleFormatChange}
+              onChange={(e) => {
+                this.handleChange('format', e.target.value)
+              }}
             >
               <FormControlLabel value="singles" control={<Radio />} label="Singles" />
               <FormControlLabel value="doubles" control={<Radio />} label="Doubles" />

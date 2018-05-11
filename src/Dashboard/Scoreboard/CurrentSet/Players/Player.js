@@ -7,7 +7,6 @@ import characters from '../../../../data/smash4/characters';
 
 import { withStyles } from 'material-ui/styles';
 
-// Teach Autosuggest how to calculate suggestions for any given input value.
 const getSuggestions = value => {
   const inputValue = value.trim().toLowerCase();
   const inputLength = inputValue.length;
@@ -17,12 +16,7 @@ const getSuggestions = value => {
   );
 };
 
-// When suggestion is clicked, Autosuggest needs to populate the input
-// based on the clicked suggestion. Teach Autosuggest how to calculate the
-// input value for every given suggestion.
 const getSuggestionValue = suggestion => suggestion;
-
-// Use your imagination to render suggestions.
 const renderSuggestion = suggestion => (
   <div>
     {suggestion}
@@ -91,7 +85,7 @@ class Player extends Component {
         </Grid>
         <Grid item container direction='row' spacing={16}>
           <Grid item>
-            <Autosuggest
+            {/* <Autosuggest
               suggestions={suggestions}
               onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
               onSuggestionsClearRequested={this.onSuggestionsClearRequested}
@@ -99,8 +93,8 @@ class Player extends Component {
               renderSuggestion={renderSuggestion}
               inputProps={inputProps}
               renderInputComponent={renderInputComponent}
-            />
-            {/* <TextField placeholder='Character' /> */}
+            /> */}
+            <TextField placeholder='Character' />
           </Grid>
         </Grid>
       </Grid>
