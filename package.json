@@ -11,6 +11,7 @@
   "dependencies": {
     "@material-ui/icons": "^1.0.0-beta.43",
     "material-ui": "^1.0.0-beta.45",
+    "nodecg": "^0.9.11",
     "react": "^16.3.2",
     "react-autosuggest": "^9.3.4",
     "react-dom": "^16.3.2",

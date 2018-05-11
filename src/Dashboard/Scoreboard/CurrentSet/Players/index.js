@@ -10,7 +10,7 @@ const initialPlayer = {
   sponsor: '',
   country: '',
   name: '',
-  characer: ''
+  character: ''
 };
 
 class Players extends Component {
@@ -20,8 +20,39 @@ class Players extends Component {
     player2: {...initialPlayer}
   };
 
+  replicant = {};
+
+  componentDidMount () {
+    this.replicant = window.nodecg.Replicant('players');
+    window.NodeCG.waitForReplicants(this.replicant).then(() => {
+      this.setState((prevState, props) => {
+        return {
+          player1: this.replicant.value.player1 || this.state.player1,
+          player2: this.replicant.value.player2 || this.state.player2
+        };
+      });
+    });
+
+  }
+
+  onChange = (player, key, value) => {
+    this.setState((prevState, props) => {
+      const newPlayer = {
+        ...prevState[player],
+        [key]: value
+      };
+
+      this.replicant.value[player] = {...newPlayer};
+      return {
+        [player]: newPlayer
+      };
+    });
+  }
+
   render() {
     const { classes } = this.props;
+    const state = this.state;
+
     return (
       <Grid container direction='row' spacing={16}>
         <Grid item>

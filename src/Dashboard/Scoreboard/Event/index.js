@@ -8,18 +8,35 @@ import { withStyles } from 'material-ui/styles';
 
 class Event extends Component {
   state = {
-    format: 'singles',
-    eventName: 'Vista Tech Those # 33',
-    eventLocation: 'Livonia, MI',
-    videoGame: 'Smash 4'
+    format: '',
+    eventName: '',
+    eventLocation: '',
+    videoGame: ''
   };
 
-  handleFormatChange = event => {
-    this.setState({ format: event.target.value });
-  };
+  replicants = {};
+
+  componentDidMount () {
+    const stateKeys = Object.keys(this.state);
+    Object.keys(this.state).forEach((key) => {
+      window.nodecg.readReplicant(key, 'gooshi-scoreboard', value => {
+        this.setState((prevState, props) => {
+          return {
+            [key]: value || ''
+          };
+        });
+      });
+    });
+
+    stateKeys.forEach(key => {
+      this.replicants[key] = window.nodecg.Replicant(key);
+    });
+
+  }
 
   handleChange = (key, value) => {
     this.setState({ [key]: value });
+    this.replicants[key].value = value;
   }
 
   render() {
@@ -33,7 +50,6 @@ class Event extends Component {
             label='Event Name'
             onChange={(e) => {this.handleChange('eventName', e.target.value)}}
             value={state.eventName}
-            placeholder='Event Name'
           />
         </Grid>
         <Grid item>
@@ -41,7 +57,6 @@ class Event extends Component {
             label='Event Location'
             onChange={(e) => {this.handleChange('eventLocation', e.target.value)}}
             value={state.eventLocation}
-            placeholder='Event Location'
           />
         </Grid>
         <Grid item>
@@ -49,7 +64,6 @@ class Event extends Component {
             label='Video Game'
             onChange={(e) => {this.handleChange('videoGame', e.target.value)}}
             value={state.videoGame}
-            placeholder='Video Game'
           />
         </Grid>
         <Grid item>

@@ -29,41 +29,45 @@ const renderInputComponent = inputProps => (
 
 class Player extends Component {
 
-  state = {
-    value: '',
-    suggestions: []
-  };
+  // onChange = (event, { newValue }) => {
+  //   this.setState({
+  //     value: newValue
+  //   });
+  // };
+  //
+  // // Autosuggest will call this function every time you need to update suggestions.
+  // // You already implemented this logic above, so just use it.
+  // onSuggestionsFetchRequested = ({ value }) => {
+  //   this.setState({
+  //     suggestions: getSuggestions(value)
+  //   });
+  // };
+  //
+  // // Autosuggest will call this function every time you need to clear suggestions.
+  // onSuggestionsClearRequested = () => {
+  //   this.setState({
+  //     suggestions: []
+  //   });
+  // };
 
-  onChange = (event, { newValue }) => {
-    this.setState({
-      value: newValue
-    });
-  };
-
-  // Autosuggest will call this function every time you need to update suggestions.
-  // You already implemented this logic above, so just use it.
-  onSuggestionsFetchRequested = ({ value }) => {
-    this.setState({
-      suggestions: getSuggestions(value)
-    });
-  };
-
-  // Autosuggest will call this function every time you need to clear suggestions.
-  onSuggestionsClearRequested = () => {
-    this.setState({
-      suggestions: []
-    });
-  };
+  onChange = (key, value) => {
+    this.props.onChange(key, value);
+  }
 
   render() {
     const { classes, number } = this.props;
-    const { value, suggestions } = this.state;
+    const {
+      sponsor,
+      country,
+      name,
+      character
+    } = this.props.model;
 
-    const inputProps = {
-      placeholder: 'Character',
-      value,
-      onChange: this.onChange
-    };
+    // const inputProps = {
+    //   placeholder: 'Character',
+    //   value,
+    //   onChange: this.onChange
+    // };
 
     return (
       <Grid container direction='column' spacing={16}>
@@ -72,15 +76,35 @@ class Player extends Component {
         </Grid>
         <Grid item container direction='row' spacing={16}>
           <Grid item>
-            <TextField className={classes.sponsor} placeholder='Sponsor' />
+            <TextField
+              className={classes.sponsor}
+              label='Sponsor'
+              value={sponsor}
+              onChange={(e) => {
+                this.onChange('sponsor', e.target.value)
+              }}
+            />
           </Grid>
           <Grid item>
-            <TextField className={classes.sponsor} placeholder='Country' />
+            <TextField
+              className={classes.sponsor}
+              label='Country'
+              value={country}
+              onChange={(e) => {
+                this.onChange('country', e.target.value)
+              }}
+            />
           </Grid>
         </Grid>
         <Grid item container direction='row' spacing={16}>
           <Grid item>
-            <TextField placeholder='Gamer Tag' />
+            <TextField
+              label='Gamer Tag'
+              value={name}
+              onChange={(e) => {
+                this.onChange('name', e.target.value)
+              }}
+            />
           </Grid>
         </Grid>
         <Grid item container direction='row' spacing={16}>
@@ -94,7 +118,13 @@ class Player extends Component {
               inputProps={inputProps}
               renderInputComponent={renderInputComponent}
             /> */}
-            <TextField placeholder='Character' />
+            <TextField
+              label='Character'
+              value={character}
+              onChange={(e) => {
+                this.onChange('character', e.target.value)
+              }}
+            />
           </Grid>
         </Grid>
       </Grid>
