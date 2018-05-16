@@ -3,48 +3,29 @@ import Grid from 'material-ui/Grid';
 import TextField from 'material-ui/TextField';
 
 import Player from './Player';
+import NodeCGReplicant from '../../../NodeCGReplicant';
 
 import { withStyles } from 'material-ui/styles';
-
-const initialPlayer = {
-  sponsor: '',
-  country: '',
-  name: '',
-  character: ''
-};
 
 class Players extends Component {
 
   state = {
-    player1: {...initialPlayer},
-    player2: {...initialPlayer}
+    scoreboard: {
+      players: []
+    }
   };
 
-  replicant = {};
+  onChange = (index, value) => {
+    this.setState((prevState) => {
+      const newPlayers = prevState.scoreboard.players;
+      newPlayers[index] = value;
 
-  componentDidMount () {
-    this.replicant = window.nodecg.Replicant('players');
-    window.NodeCG.waitForReplicants(this.replicant).then(() => {
-      this.setState((prevState, props) => {
-        return {
-          player1: this.replicant.value.player1 || this.state.player1,
-          player2: this.replicant.value.player2 || this.state.player2
-        };
-      });
-    });
-
-  }
-
-  onChange = (player, key, value) => {
-    this.setState((prevState, props) => {
-      const newPlayer = {
-        ...prevState[player],
-        [key]: value
-      };
-
-      this.replicant.value[player] = {...newPlayer};
       return {
-        [player]: newPlayer
+        ...prevState,
+        scoreboard: {
+          ...prevState.scoreboard,
+          players: newPlayers
+        }
       };
     });
   }
@@ -55,24 +36,22 @@ class Players extends Component {
 
     return (
       <Grid container direction='row' spacing={16}>
-        <Grid item>
-          <Player
-            model={state.player1}
-            number={1}
-            onChange={(key, value) => {
-              this.onChange('player1', key, value)}
-            }
-          />
-        </Grid>
-        <Grid item>
-          <Player
-            model={state.player2}
-            number={2}
-            onChange={(key, value) => {
-              this.onChange('player2', key, value)}
-            }
-          />
-        </Grid>
+        <NodeCGReplicant
+          replicantName='scoreboard'
+          value={this.state.scoreboard}
+          onNewValue={(newValue) => {this.setState({scoreboard: newValue})}}
+        />
+        {state.scoreboard.players.map((player, index) => (
+          <Grid key={index} item>
+            <Player
+              model={player}
+              number={index}
+              onChange={(value) => {
+                this.onChange(index, value)}
+              }
+            />
+          </Grid>
+        ))}
       </Grid>
     );
   }

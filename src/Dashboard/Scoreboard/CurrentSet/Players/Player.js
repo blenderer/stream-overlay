@@ -51,7 +51,10 @@ class Player extends Component {
   // };
 
   onChange = (key, value) => {
-    this.props.onChange(key, value);
+    this.props.onChange({
+      ...this.props.model,
+      [key]: value
+    });
   }
 
   render() {
@@ -79,7 +82,7 @@ class Player extends Component {
             <TextField
               className={classes.sponsor}
               label='Sponsor'
-              value={sponsor}
+              value={sponsor || ''}
               onChange={(e) => {
                 this.onChange('sponsor', e.target.value)
               }}
@@ -89,7 +92,7 @@ class Player extends Component {
             <TextField
               className={classes.sponsor}
               label='Country'
-              value={country}
+              value={country || ''}
               onChange={(e) => {
                 this.onChange('country', e.target.value)
               }}
@@ -100,7 +103,7 @@ class Player extends Component {
           <Grid item>
             <TextField
               label='Gamer Tag'
-              value={name}
+              value={name || ''}
               onChange={(e) => {
                 this.onChange('name', e.target.value)
               }}
@@ -120,7 +123,7 @@ class Player extends Component {
             /> */}
             <TextField
               label='Character'
-              value={character}
+              value={character || ''}
               onChange={(e) => {
                 this.onChange('character', e.target.value)
               }}

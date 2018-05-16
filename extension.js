@@ -11,4 +11,47 @@ module.exports = function (nodecg) {
   const set = nodecg.Replicant('set', {defaultValue: {}, persistent: true});
 
   const bla = nodecg.Replicant('bla', {defaultValue: {hello: 'world'}, persistent: true});
+
+
+  // new stuff
+  const scoreboard = nodecg.Replicant('scoreboard', {
+    defaultValue: {
+      format: 'singles',
+      eventName: 'SDI This # 33',
+      eventLocation: 'Livonia, MI',
+      videoGame: 'Smash 4',
+      players: [
+        {
+          sponsor: '',
+          country: 'CL',
+          name: 'Zero',
+          character: 'Diddy Kong'
+        },
+        {
+          sponsor: 'Gooshi',
+          country: 'US',
+          name: 'LOE1',
+          character: 'Wario'
+        },
+        {
+          sponsor: '',
+          country: '',
+          name: '',
+          character: ''
+        },
+        {
+          sponsor: '',
+          country: '',
+          name: '',
+          character: ''
+        }
+      ],
+      set: {
+        format: 'bo3',
+        player1: '0',
+        player2: '0'
+      }
+    },
+    persistent: true
+  })
 };

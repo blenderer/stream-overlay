@@ -16,8 +16,8 @@ class NodeCGReplicant extends Component {
 
   static propTypes = {
     replicantName: PropTypes.string.isRequired,
-    value: PropTypes.any.isRequired,
-    onNewValue: PropTypes.func.isRequired
+    value: PropTypes.any,
+    onNewValue: PropTypes.func.isRequired,
   }
 
   static getDerivedStateFromProps (nextProps, prevState) {
@@ -48,7 +48,17 @@ class NodeCGReplicant extends Component {
       onNewValue(this.state.replicant.value);
     });
 
-    this.state.replicant.on('change', onNewValue);
+    this._mounted = true;
+
+    this.state.replicant.on('change', (newValue, oldValue) => {
+      if (this._mounted) {
+        onNewValue(newValue, oldValue);
+      }
+    });
+  }
+
+  componentWillUnmount () {
+    this._mounted = false;
   }
 
   render () {
