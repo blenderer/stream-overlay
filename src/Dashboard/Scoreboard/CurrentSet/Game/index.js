@@ -13,17 +13,27 @@ class Game extends Component {
     player2: '0'
   };
 
-  handleFormatChange = event => {
-    this.setState({ format: event.target.value });
-  };
+  replicant = {};
 
-  handlePlayer1Change = event => {
-    this.setState({ player1: event.target.value });
-  };
+  componentDidMount () {
+    this.replicant = window.nodecg.Replicant('set', {defaultValue: {}});
 
-  handlePlayer2Change = event => {
-    this.setState({ player2: event.target.value });
-  };
+    window.NodeCG.waitForReplicants(this.replicant).then(() => {
+      this.setState((prevState, props) => {
+        return {
+          ...this.replicant.value
+        };
+      });
+    });
+  }
+
+  handleChange = (key, value) => {
+    this.setState({ [key]: value });
+    if (!this.replicant.value) {
+      this.replicant.value = {};
+    }
+    this.replicant.value[key] = value;
+  }
 
   render() {
     const { classes } = this.props;
@@ -41,7 +51,9 @@ class Game extends Component {
               aria-label="format"
               name="format"
               value={format}
-              onChange={this.handleFormatChange}
+              onChange={(e) => {
+                this.handleChange('format', e.target.value);
+              }}
             >
               <FormControlLabel value="bo3" control={<Radio />} label="Best of 3" />
               <FormControlLabel value="bo5" control={<Radio />} label="Best of 5" />
@@ -57,7 +69,9 @@ class Game extends Component {
                   aria-label="player-1"
                   name="player-1"
                   value={this.state.player1}
-                  onChange={this.handlePlayer1Change}
+                  onChange={(e) => {
+                    this.handleChange('player1', e.target.value);
+                  }}
                 >
                   <FormControlLabel value="0" control={<Radio />} label="0" />
                   <FormControlLabel value="1" control={<Radio />} label="1" />
@@ -75,7 +89,9 @@ class Game extends Component {
                   aria-label="player-2"
                   name="player-2"
                   value={this.state.player2}
-                  onChange={this.handlePlayer2Change}
+                  onChange={(e) => {
+                    this.handleChange('player2', e.target.value);
+                  }}
                 >
                   <FormControlLabel value="0" control={<Radio />} label="0" />
                   <FormControlLabel value="1" control={<Radio />} label="1" />

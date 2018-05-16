@@ -7,4 +7,6 @@ module.exports = function (nodecg) {
   const videoGame = nodecg.Replicant('format', {defaultValue: 'Smash 4', persistent: true});
 
   const players = nodecg.Replicant('players', {defaultValue: {}, persistent: true});
+
+  const set = nodecg.Replicant('set', {defaultValue: {}, persistent: true});
 };
