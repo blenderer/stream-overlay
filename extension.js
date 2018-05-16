@@ -9,4 +9,6 @@ module.exports = function (nodecg) {
   const players = nodecg.Replicant('players', {defaultValue: {}, persistent: true});
 
   const set = nodecg.Replicant('set', {defaultValue: {}, persistent: true});
+
+  const bla = nodecg.Replicant('bla', {defaultValue: {hello: 'world'}, persistent: true});
 };
