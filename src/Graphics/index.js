@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import singlesBase from './frostbite-graphics/Overlays/SNS4-Gameplay-Singles-Base.png';
 import singlesLeft from './frostbite-graphics/Overlays/SNS4_Scoreboard-Singles-Left.png';
 import singlesRight from './frostbite-graphics/Overlays/SNS4_Scoreboard-Singles-Right.png';
+import scoreLeftBG from './frostbite-graphics/Overlays/SNS4-Score-Left-Bo3.png';
+import scoreRightBG from './frostbite-graphics/Overlays/SNS4-Score-Right-Bo3.png';
+import scoreLeftFill from './frostbite-graphics/Overlays/SNS4-Score-Left-Fill.png';
+import scoreRightFill from './frostbite-graphics/Overlays/SNS4-Score-Right-Fill.png';
 
 import NodeCGReplicant from '../Dashboard/NodeCGReplicant';
 
@@ -25,7 +29,16 @@ class Graphics extends Component {
       color: 'white',
       fontSize: 39,
       position: 'absolute'
-		}
+		},
+    bracketPhase: {
+      position: 'absolute',
+      textAlign: 'center',
+      color: 'white',
+      fontSize: 20,
+      bottom: 68,
+			left: 0,
+      right: 0
+    }
 	};
 
 	renderGraphics() {
@@ -33,21 +46,34 @@ class Graphics extends Component {
 		const styles = this.styles;
 
 		return (
-			<div style={{ position: 'relative' }}>
+			<div style={{ position: 'relative', height: '100%' }}>
 				<img
 					style={styles.graphic}
 					src={`build${singlesBase}`}
-					alt=""
 				/>
 				<img
           style={styles.graphic}
 					src={`build${singlesLeft}`}
-					alt=""
 				/>
         <img
 					style={styles.graphic}
 					src={`build${singlesRight}`}
-					alt=""
+				/>
+        <img
+					style={styles.graphic}
+					src={`build${scoreLeftBG}`}
+				/>
+        <img
+					style={styles.graphic}
+					src={`build${scoreRightBG}`}
+				/>
+        <img
+					style={styles.graphic}
+					src={`build${scoreLeftFill}`}
+				/>
+        <img
+					style={styles.graphic}
+					src={`build${scoreRightFill}`}
 				/>
 				<div
           style={{ ...styles.name, left: 2 }}
@@ -58,6 +84,11 @@ class Graphics extends Component {
           style={{ ...styles.name, right: 2 }}
 				>
 					{scoreboard.players[1].name}
+				</div>
+        <div
+          style={{ ...styles.bracketPhase}}
+				>
+					{scoreboard.set.bracketPhase}
 				</div>
 			</div>
 		);
