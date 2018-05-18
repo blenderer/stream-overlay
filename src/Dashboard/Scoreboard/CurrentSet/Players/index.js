@@ -33,6 +33,7 @@ class Players extends Component {
   render() {
     const { classes } = this.props;
     const state = this.state;
+    const { scoreboard } = state;
 
     return (
       <Grid container direction='row' spacing={16}>
@@ -41,17 +42,22 @@ class Players extends Component {
           value={this.state.scoreboard}
           onNewValue={(newValue) => {this.setState({scoreboard: newValue})}}
         />
-        {state.scoreboard.players.map((player, index) => (
-          <Grid key={index} item>
-            <Player
-              model={player}
-              number={index}
-              onChange={(value) => {
-                this.onChange(index, value)}
-              }
-            />
-          </Grid>
-        ))}
+        {state.scoreboard.players.map((player, index) => {
+          if (scoreboard.format === 'singles' && index > 1) {
+            return null;
+          }
+          return (
+            <Grid key={index} item>
+              <Player
+                model={player}
+                number={index}
+                onChange={(value) => {
+                  this.onChange(index, value)}
+                }
+              />
+            </Grid>
+          );
+        })}
       </Grid>
     );
   }

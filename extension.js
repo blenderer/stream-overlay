@@ -49,7 +49,8 @@ module.exports = function (nodecg) {
       set: {
         format: 'bo3',
         player1: '0',
-        player2: '0'
+        player2: '0',
+        bracketPhase: 'Pools Round 1'
       }
     },
     persistent: true
