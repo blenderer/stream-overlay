@@ -1,30 +1,36 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
 
+import NodeCGReplicant from '../Dashboard/NodeCGReplicant';
+
 class Graphics extends Component {
 
-  replicant = window.nodecg.Replicant('test')
   state = {
-    value: ''
+    scoreboard: null
   }
 
-  componentDidMount() {
-    this.replicant.on('change', this.onUpdate);
-  }
+  renderGraphics () {
+    const { scoreboard } = this.state;
 
-  onUpdate = (newVal) => {
-    this.setState({
-      value: newVal
-    });
+    return (
+      <div>
+        <img style={{width: 50}} src={`build${logo}`} alt=""/>
+        <h1>{scoreboard.format}</h1>
+      </div>
+    );
   }
 
   render() {
-    const { value } = this.state;
+    const { scoreboard } = this.state;
 
     return (
       <React.Fragment>
-        <img style={{width: 50}} src={`build${logo}`} alt=""/>
-        <h1>{value}</h1>
+        <NodeCGReplicant
+          replicantName='scoreboard'
+          value={this.state.scoreboard}
+          onNewValue={(newValue) => {this.setState({scoreboard: newValue})}}
+        />
+        {scoreboard ? this.renderGraphics() : null}
       </React.Fragment>
     );
   }
