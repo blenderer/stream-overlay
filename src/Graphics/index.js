@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import singlesBase from './frostbite-graphics/Overlays/SNS4-Gameplay-Singles-Base.png';
-import singlesLeft from './frostbite-graphics/Overlays/SNS4_Scoreboard-Singles-Left.png';
-import singlesRight from './frostbite-graphics/Overlays/SNS4_Scoreboard-Singles-Right.png';
-import scoreLeftBG from './frostbite-graphics/Overlays/SNS4-Score-Left-Bo3.png';
-import scoreRightBG from './frostbite-graphics/Overlays/SNS4-Score-Right-Bo3.png';
-import scoreLeftFill from './frostbite-graphics/Overlays/SNS4-Score-Left-Fill.png';
-import scoreRightFill from './frostbite-graphics/Overlays/SNS4-Score-Right-Fill.png';
+
+import font from './frostbite/fonts/big_noodle_titling.woff';
+
+import singlesBase from './frostbite/graphics/Overlays/SNS4-Gameplay-Singles-Base.png';
+import singlesLeft from './frostbite/graphics/Overlays/SNS4_Scoreboard-Singles-Left.png';
+import singlesRight from './frostbite/graphics/Overlays/SNS4_Scoreboard-Singles-Right.png';
+import scoreLeftBG from './frostbite/graphics/Overlays/SNS4-Score-Left-Bo3.png';
+import scoreRightBG from './frostbite/graphics/Overlays/SNS4-Score-Right-Bo3.png';
+import scoreLeftFill from './frostbite/graphics/Overlays/SNS4-Score-Left-Fill.png';
+import scoreRightFill from './frostbite/graphics/Overlays/SNS4-Score-Right-Fill.png';
 
 import NodeCGReplicant from '../Dashboard/NodeCGReplicant';
 
@@ -99,6 +102,15 @@ class Graphics extends Component {
 
 		return (
 			<React.Fragment>
+        <style dangerouslySetInnerHTML={{__html: `
+          @font-face {
+            font-family: 'BigNoodle';
+            src: url('build${font}') format('woff');
+          }
+          #graphics * {
+            font-family: BigNoodle;
+          }
+        `}} />
 				<NodeCGReplicant
 					replicantName="scoreboard"
 					value={this.state.scoreboard}
