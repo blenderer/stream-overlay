@@ -1,6 +1,15 @@
 'use strict';
 
+const OBSUtility = require('nodecg-utility-obs');
+
 module.exports = function (nodecg) {
+  const obs = new OBSUtility(nodecg);
+
+  nodecg.listenFor('switch-scene', (value, ack) => {
+    obs.setCurrentScene({'scene-name': value});
+  });
+
+
   const format = nodecg.Replicant('format', {defaultValue: 'singles', persistent: true});
   const eventName = nodecg.Replicant('format', {defaultValue: 'Vista Tech Those # 33', persistent: true});
   const eventLocation = nodecg.Replicant('format', {defaultValue: 'Livonia, MI', persistent: true});
