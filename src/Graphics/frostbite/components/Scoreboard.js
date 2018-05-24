@@ -6,27 +6,83 @@ import GraphicImage from '../../components/GraphicImage';
 import graphics from '../scripts/graphics';
 
 const styles = {
-
+  name: {
+    top: 6,
+    width: 411,
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 39,
+    position: 'absolute'
+  },
+  bracketPhase: {
+    position: 'absolute',
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 20,
+    bottom: 68,
+    left: 0,
+    right: 0
+  }
 };
 
 class Scoreboard extends PureComponent {
 
   renderSingles () {
+    const { classes, scoreboard } = this.props;
+
     return (
       <React.Fragment>
         <GraphicImage src={`build${graphics.singlesBase}`} />
         <GraphicImage src={`build${graphics.scoreLeftSingles}`} />
         <GraphicImage src={`build${graphics.scoreRightSingles}`} />
+        <div
+          className={classes.name}
+          style={{ left: 2 }}
+				>
+					{scoreboard.players[0].name}
+				</div>
+        <div
+          className={classes.name}
+          style={{ right: 2 }}
+				>
+					{scoreboard.players[1].name}
+				</div>
       </React.Fragment>
     );
   }
 
   renderDoubles () {
+    const { classes, scoreboard } = this.props;
+
     return (
       <React.Fragment>
         <GraphicImage src={`build${graphics.doublesBase}`} />
         <GraphicImage src={`build${graphics.scoreLeftDoubles}`} />
         <GraphicImage src={`build${graphics.scoreRightDoubles}`} />
+        <div
+          className={classes.name}
+          style={{ left: 2, top: 0 }}
+				>
+					{scoreboard.players[0].name}
+				</div>
+        <div
+          className={classes.name}
+          style={{ left: 2, top: 46 }}
+				>
+					{scoreboard.players[1].name}
+				</div>
+        <div
+          className={classes.name}
+          style={{ right: 2, top: 0 }}
+				>
+					{scoreboard.players[2].name}
+				</div>
+        <div
+          className={classes.name}
+          style={{ right: 2, top: 46 }}
+				>
+					{scoreboard.players[3].name}
+				</div>
       </React.Fragment>
     );
   }
