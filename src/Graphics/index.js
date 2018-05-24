@@ -118,7 +118,7 @@ class Graphics extends Component {
             font-family: BigNoodle;
           }
         `}} />
-				<Scoreboard />
+				{ scoreboard ? <Scoreboard scoreboard={scoreboard} /> : null }
 				<NodeCGReplicant
 					replicantName="scoreboard"
 					value={this.state.scoreboard}

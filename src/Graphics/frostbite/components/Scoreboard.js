@@ -35,7 +35,7 @@ class Scoreboard extends PureComponent {
     return (
       <React.Fragment>
         <GraphicImage src={`build${graphics.scoreLeftbo3}`} />
-        <GraphicImage src={`build${graphics.scoreRightbo5}`} />
+        <GraphicImage src={`build${graphics.scoreRightbo3}`} />
       </React.Fragment>
     );
   }
@@ -50,11 +50,19 @@ class Scoreboard extends PureComponent {
   }
 
 	render() {
+    const { scoreboard } = this.props;
 		return (
       <Graphic enabled>
-
-        {this.renderSingles()}
-        {this.renderBo3()}
+        {
+          scoreboard.format === 'singles'
+          ? this.renderSingles()
+          : this.renderDoubles()
+        }
+        {
+          scoreboard.set.format === 'bo3'
+          ? this.renderBo3()
+          : this.renderBo5()
+        }
 
         <GraphicImage src={`build${graphics.scoreLeftFill}`} />
         <GraphicImage src={`build${graphics.scoreRightFill}`} />
