@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Grid from 'material-ui/Grid';
-import TextField from 'material-ui/TextField';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
 
 import Player from './Player';
 import NodeCGReplicant from '../../../NodeCGReplicant';
 
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 class Players extends Component {
 

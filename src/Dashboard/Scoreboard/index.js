@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import Grid from 'material-ui/Grid';
-import TextField from 'material-ui/TextField';
-import Tabs, { Tab } from 'material-ui/Tabs';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 import Event from './Event';
 import CurrentSet from './CurrentSet';
 
 import NodeCGReplicant from '../NodeCGReplicant';
 
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 class Scoreboard extends Component {
   state = {

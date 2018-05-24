@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import font from './frostbite/fonts/big_noodle_titling.woff';
 
+import graphics from './frostbite/scripts/graphics';
+
 import singlesBase from './frostbite/graphics/Overlays/SNS4-Gameplay-Singles-Base.png';
 import singlesLeft from './frostbite/graphics/Overlays/SNS4_Scoreboard-Singles-Left.png';
 import singlesRight from './frostbite/graphics/Overlays/SNS4_Scoreboard-Singles-Right.png';
@@ -11,6 +13,11 @@ import scoreLeftFill from './frostbite/graphics/Overlays/SNS4-Score-Left-Fill.pn
 import scoreRightFill from './frostbite/graphics/Overlays/SNS4-Score-Right-Fill.png';
 
 import NodeCGReplicant from '../Dashboard/NodeCGReplicant';
+
+import GraphicImage from './components/GraphicImage';
+import Graphic from './components/Graphic';
+
+import Scoreboard from './frostbite/components/Scoreboard';
 
 class Graphics extends Component {
 	state = {
@@ -111,6 +118,7 @@ class Graphics extends Component {
             font-family: BigNoodle;
           }
         `}} />
+				<Scoreboard />
 				<NodeCGReplicant
 					replicantName="scoreboard"
 					value={this.state.scoreboard}
@@ -118,7 +126,7 @@ class Graphics extends Component {
 						this.setState({ scoreboard: newValue });
 					}}
 				/>
-				{scoreboard ? this.renderGraphics() : null}
+				{/* {scoreboard ? this.renderGraphics() : null} */}
 			</React.Fragment>
 		);
 	}

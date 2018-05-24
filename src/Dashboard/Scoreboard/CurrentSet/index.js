@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Grid from 'material-ui/Grid';
+import Grid from '@material-ui/core/Grid';
 
 import Players from './Players';
 import Game from './Game';
 
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 class CurrentSet extends Component {
 

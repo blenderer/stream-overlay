@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Grid from 'material-ui/Grid';
-import TextField from 'material-ui/TextField';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
 import Autosuggest from 'react-autosuggest';
 
 import characters from '../../../../data/smash4/characters';
 
-import { withStyles } from 'material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const getSuggestions = value => {
   const inputValue = value.trim().toLowerCase();
