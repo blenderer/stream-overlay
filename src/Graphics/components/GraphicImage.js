@@ -15,10 +15,10 @@ const styles = {
 class GraphicImage extends PureComponent {
 
 	render() {
-		const { src, classes, className } = this.props;
+		const { src, classes, className, style = {} } = this.props;
 
 		return (
-      <img className={classNames(classes.image, className)} src={src} alt=""/>
+      <img style={style} className={classNames(classes.image, className)} src={src} alt=""/>
 		);
 	}
 }

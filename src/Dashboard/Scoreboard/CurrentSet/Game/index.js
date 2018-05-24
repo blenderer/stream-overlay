@@ -101,11 +101,16 @@ class Game extends Component {
 										control={<Radio />}
 										label="1"
 									/>
+									<FormControlLabel
+										value="2"
+										control={<Radio />}
+										label="2"
+									/>
 									{scoreboard.set.format === 'bo5' && (
 										<FormControlLabel
-											value="2"
+											value="3"
 											control={<Radio />}
-											label="2"
+											label="3"
 										/>
 									)}
 								</RadioGroup>
@@ -137,11 +142,16 @@ class Game extends Component {
 										control={<Radio />}
 										label="1"
 									/>
+									<FormControlLabel
+										value="2"
+										control={<Radio />}
+										label="2"
+									/>
 									{scoreboard.set.format === 'bo5' && (
 										<FormControlLabel
-											value="2"
+											value="3"
 											control={<Radio />}
-											label="2"
+											label="3"
 										/>
 									)}
 								</RadioGroup>

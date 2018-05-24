@@ -105,6 +105,32 @@ class Scoreboard extends PureComponent {
     );
   }
 
+  renderScore () {
+    const { scoreboard } = this.props;
+
+    const left = [];
+    const right = [];
+
+    for (let i = 0; i < scoreboard.set.player1; i++) {
+      left.push(
+        <GraphicImage style={{left: i * -18}} key={`p1-${i}`} src={`build${graphics.scoreLeftFill}`} />
+      );
+    }
+
+    for (let i = 0; i < scoreboard.set.player2; i++) {
+      right.push(
+        <GraphicImage style={{left: 'auto', right: i * -18}} key={`p2-${i}`} src={`build${graphics.scoreRightFill}`} />
+      );
+    }
+
+    return (
+      <React.Fragment>
+        {left}
+        {right}
+      </React.Fragment>
+    );
+  }
+
 	render() {
     const { scoreboard } = this.props;
 		return (
@@ -120,8 +146,8 @@ class Scoreboard extends PureComponent {
           : this.renderBo5()
         }
 
-        <GraphicImage src={`build${graphics.scoreLeftFill}`} />
-        <GraphicImage src={`build${graphics.scoreRightFill}`} />
+        {this.renderScore()}
+
       </Graphic>
 		);
 	}
