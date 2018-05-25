@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import font from './frostbite/fonts/big_noodle_titling.woff';
 import NodeCGReplicant from '../Dashboard/NodeCGReplicant';
 import Scoreboard from './frostbite/components/Scoreboard';
+import PlayerCam from './frostbite/components/PlayerCam';
 
 class Graphics extends Component {
 	state = {
@@ -18,6 +19,7 @@ class Graphics extends Component {
 		return (
 			<React.Fragment>
 				<Scoreboard scoreboard={scoreboard} />
+				{/* <PlayerCam scoreboard={scoreboard} /> */}
 			</React.Fragment>
 		);
 	}

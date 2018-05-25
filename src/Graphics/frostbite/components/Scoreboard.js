@@ -133,7 +133,7 @@ class Scoreboard extends PureComponent {
 
   renderBracketPhase () {
     const { scoreboard, classes } = this.props;
-    
+
     return (
       <div
         className={classes.bracketPhase}
@@ -145,8 +145,10 @@ class Scoreboard extends PureComponent {
 
 	render() {
     const { scoreboard } = this.props;
+
 		return (
       <Graphic enabled>
+
         {
           scoreboard.format === 'singles'
           ? this.renderSingles()
@@ -160,7 +162,13 @@ class Scoreboard extends PureComponent {
 
         {this.renderScore()}
         {this.renderBracketPhase()}
-
+        <img src={`build/flags/HR.png`} style={{
+          position: 'absolute',
+          left: 417,
+          top: 0,
+          width: 49,
+          height: 54
+        }} alt=""/>
       </Graphic>
 		);
 	}
