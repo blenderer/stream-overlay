@@ -131,6 +131,18 @@ class Scoreboard extends PureComponent {
     );
   }
 
+  renderBracketPhase () {
+    const { scoreboard, classes } = this.props;
+    
+    return (
+      <div
+        className={classes.bracketPhase}
+      >
+        {scoreboard.set.bracketPhase}
+      </div>
+    );
+  }
+
 	render() {
     const { scoreboard } = this.props;
 		return (
@@ -147,6 +159,7 @@ class Scoreboard extends PureComponent {
         }
 
         {this.renderScore()}
+        {this.renderBracketPhase()}
 
       </Graphic>
 		);

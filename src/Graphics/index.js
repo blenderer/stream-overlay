@@ -9,15 +9,7 @@ class Graphics extends Component {
 	};
 
 	styles = {
-    bracketPhase: {
-      position: 'absolute',
-      textAlign: 'center',
-      color: 'white',
-      fontSize: 20,
-      bottom: 68,
-			left: 0,
-      right: 0
-    }
+
 	};
 
 	renderGraphics () {
