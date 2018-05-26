@@ -29,7 +29,10 @@ const styles = {
     top: 0,
     width: 49,
     height: 54
-  }
+  },
+	sponsor: {
+		color: 'rgba(225, 225, 225, 1)'
+	}
 };
 
 const flagMap = flags.reduce((map, flagName) => ({
@@ -41,17 +44,17 @@ class Scoreboard extends React.Component {
 	renderSingles() {
 		const { classes, scoreboard } = this.props;
 
-    console.log(scoreboard);
-
 		return (
 			<React.Fragment>
 				<GraphicImage src={`build${graphics.singlesBase}`} />
 				<GraphicImage src={`build${graphics.scoreLeftSingles}`} />
 				<GraphicImage src={`build${graphics.scoreRightSingles}`} />
 				<div className={classes.name} style={{ left: 2 }}>
+					<span className={classes.sponsor}>{scoreboard.players[0].sponsor ? scoreboard.players[0].sponsor + ' ' : null }</span>
 					{scoreboard.players[0].name}
 				</div>
 				<div className={classes.name} style={{ right: 2 }}>
+					<span className={classes.sponsor}>{scoreboard.players[1].sponsor ? scoreboard.players[1].sponsor + ' ' : null }</span>
 					{scoreboard.players[1].name}
 				</div>
         {flagMap[scoreboard.players[0].country] &&
