@@ -38,7 +38,7 @@ class Game extends Component {
 								e.target.value
 							);
 						}}
-						placeholder="Bracket Phase"
+						label="Bracket Phase"
 					/>
 				</Grid>
 				<Grid item>

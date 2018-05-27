@@ -7,7 +7,7 @@ import Commentators from './frostbite/components/Commentators';
 class Graphics extends Component {
 	state = {
 		scoreboard: null,
-		activeOverlay: 'scoreboard'
+		activeOverlay: 'commentators'
 	};
 
 	styles = {
