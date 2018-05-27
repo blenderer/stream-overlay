@@ -1,13 +1,15 @@
 import React, { PureComponent } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
+import classNames from 'classnames';
+
 class Tag extends React.Component {
 
 	render() {
-		const { sponsor, name, classes } = this.props;
+		const { sponsor, name, classes, className, ...restProps } = this.props;
 
 		return (
-      <div className={classes.name} {...this.props}>
+      <div className={classNames(classes.name, className)} {...restProps}>
         <span className={classes.sponsor}>
           {sponsor ? sponsor + ' ' : null}
         </span>

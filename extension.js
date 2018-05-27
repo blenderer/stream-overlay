@@ -29,6 +29,20 @@ module.exports = function (nodecg) {
       eventName: 'SDI This # 33',
       eventLocation: 'Livonia, MI',
       videoGame: 'Smash 4',
+      commentators: [
+        {
+          name: 'Script',
+          sponsor: 'Gooshi',
+          twitter: 'ScriptKity',
+          twitch: 'ScriptKity'
+        },
+        {
+          name: 'Sup',
+          sponsor: 'Gooshi',
+          twitter: 'PacmanSup',
+          twitch: ''
+        }
+      ],
       players: [
         {
           sponsor: '',

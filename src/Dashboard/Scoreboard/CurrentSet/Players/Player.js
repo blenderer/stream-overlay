@@ -7,25 +7,9 @@ import flags from '../../../../Graphics/frostbite/scripts/flags';
 import sponsors from '../../../../Graphics/frostbite/scripts/sponsors';
 
 import characters from '../../../../data/smash4/characters';
+import rivals from 'game-characters/rivalsofaether';
 
 import { withStyles } from '@material-ui/core/styles';
-
-const getSuggestions = value => {
-	const inputValue = value.trim().toLowerCase();
-	const inputLength = inputValue.length;
-
-	return inputLength === 0
-		? []
-		: characters.filter(
-				character =>
-					character.toLowerCase().slice(0, inputLength) === inputValue
-		  );
-};
-
-const getSuggestionValue = suggestion => suggestion;
-const renderSuggestion = suggestion => <div>{suggestion}</div>;
-
-const renderInputComponent = inputProps => <TextField {...inputProps} />;
 
 class Player extends Component {
 	onChange = (key, value) => {
@@ -85,12 +69,15 @@ class Player extends Component {
 				</Grid>
 				<Grid item container direction="row" spacing={16}>
 					<Grid item>
-						<TextField
-							label="Character"
-							value={character || ''}
-							onChange={e => {
-								this.onChange('character', e.target.value);
-							}}
+						<Suggest
+							inputProps={{
+                label: 'Character'
+              }}
+							onChange={selection =>
+								this.onChange('character', selection)
+							}
+							items={rivals}
+              inputValue={character}
 						/>
 					</Grid>
 				</Grid>

@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import font from './frostbite/fonts/big_noodle_titling.woff';
 import NodeCGReplicant from '../Dashboard/NodeCGReplicant';
 import Scoreboard from './frostbite/components/Scoreboard';
-import PlayerCam from './frostbite/components/PlayerCam';
+import Commentators from './frostbite/components/Commentators';
 
 class Graphics extends Component {
 	state = {
-		scoreboard: null
+		scoreboard: null,
+		activeOverlay: 'scoreboard'
 	};
 
 	styles = {
@@ -14,12 +15,12 @@ class Graphics extends Component {
 	};
 
 	renderGraphics () {
-		const { scoreboard } = this.state;
+		const { scoreboard, activeOverlay } = this.state;
 
 		return (
 			<React.Fragment>
-				<Scoreboard scoreboard={scoreboard} />
-				{/* <PlayerCam scoreboard={scoreboard} /> */}
+				<Scoreboard enabled={activeOverlay === 'scoreboard'} scoreboard={scoreboard} />
+				<Commentators enabled={activeOverlay === 'commentators'} scoreboard={scoreboard} />
 			</React.Fragment>
 		);
 	}

@@ -19,4 +19,5 @@ html {
 
 #graphics {
   height: 100%;
+  position: relative;
 }

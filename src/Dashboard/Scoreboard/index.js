@@ -6,6 +6,7 @@ import Tab from '@material-ui/core/Tab';
 
 import Event from './Event';
 import CurrentSet from './CurrentSet';
+import Commentary from './Commentary';
 
 import NodeCGReplicant from '../NodeCGReplicant';
 
@@ -64,9 +65,11 @@ class Scoreboard extends Component {
         <Tabs style={{marginBottom: 15}} value={value} onChange={this.handleChange}>
           <Tab label="Event Info" />
           <Tab label="Current Set" />
+          <Tab label="Commentary" />
         </Tabs>
         {value === 0 && <Event />}
         {value === 1 && <CurrentSet />}
+        {value === 2 && <Commentary />}
       </React.Fragment>
     );
   }

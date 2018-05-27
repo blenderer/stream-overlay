@@ -209,10 +209,10 @@ class Scoreboard extends React.Component {
 	}
 
 	render() {
-		const { scoreboard } = this.props;
+		const { scoreboard, enabled } = this.props;
 
 		return (
-			<Graphic enabled>
+			<Graphic enabled={enabled}>
 				{scoreboard.format === 'singles'
 					? this.renderSingles()
 					: this.renderDoubles()}
