@@ -3,11 +3,12 @@ import font from './frostbite/fonts/big_noodle_titling.woff';
 import NodeCGReplicant from '../Dashboard/NodeCGReplicant';
 import Scoreboard from './frostbite/components/Scoreboard';
 import Commentators from './frostbite/components/Commentators';
+import BigCamera from './frostbite/components/BigCamera';
 
 class Graphics extends Component {
 	state = {
 		scoreboard: null,
-		activeOverlay: 'commentators'
+		activeOverlay: 'bigcamera'
 	};
 
 	styles = {
@@ -21,6 +22,7 @@ class Graphics extends Component {
 			<React.Fragment>
 				<Scoreboard enabled={activeOverlay === 'scoreboard'} scoreboard={scoreboard} />
 				<Commentators enabled={activeOverlay === 'commentators'} scoreboard={scoreboard} />
+				<BigCamera enabled={activeOverlay === 'bigcamera'} scoreboard={scoreboard} />
 			</React.Fragment>
 		);
 	}

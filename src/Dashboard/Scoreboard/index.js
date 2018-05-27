@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _isEqual from 'lodash/isEqual';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Tabs from '@material-ui/core/Tabs';
@@ -20,17 +21,17 @@ class Scoreboard extends Component {
 		programScene: {}
 	};
 
-  save = () => {
-    this.setState({scoreboard: this.state.draft});
-  }
+	save = () => {
+		this.setState({ scoreboard: this.state.draft });
+	};
 
 	handleChange = (event, value) => {
 		this.setState({ value });
 	};
 
-  updateDraft = value => {
-    this.setState({ draft: value });
-  }
+	updateDraft = value => {
+		this.setState({ draft: value });
+	};
 
 	switchScene = scene => {
 		window.nodecg.sendMessage('switch-scene', scene);
@@ -38,11 +39,24 @@ class Scoreboard extends Component {
 
 	renderScoreboard() {
 		const { classes } = this.props;
-		const { value, sceneList, programScene, scoreboard, draft } = this.state;
+		const {
+			value,
+			sceneList,
+			programScene,
+			scoreboard,
+			draft
+		} = this.state;
+
+		const clean = _isEqual(scoreboard, draft);
 
 		return (
 			<React.Fragment>
-				<Button onClick={this.save} variant="raised" color="primary">
+				<Button
+					disabled={clean}
+					onClick={this.save}
+					variant="raised"
+					color="primary"
+				>
 					Save
 				</Button>
 				<Tabs
@@ -55,10 +69,7 @@ class Scoreboard extends Component {
 					<Tab label="Commentary" />
 				</Tabs>
 				{value === 0 && (
-					<Event
-						scoreboard={draft}
-						onChange={this.updateDraft}
-					/>
+					<Event scoreboard={draft} onChange={this.updateDraft} />
 				)}
 				{value === 1 && (
 					<CurrentSet
@@ -86,7 +97,10 @@ class Scoreboard extends Component {
 					replicantName="scoreboard"
 					value={this.state.scoreboard}
 					onNewValue={newValue => {
-						this.setState({ scoreboard: newValue, draft: newValue });
+						this.setState({
+							scoreboard: newValue,
+							draft: newValue
+						});
 					}}
 				/>
 				<NodeCGReplicant
