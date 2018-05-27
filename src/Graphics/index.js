@@ -4,25 +4,36 @@ import NodeCGReplicant from '../Dashboard/NodeCGReplicant';
 import Scoreboard from './frostbite/components/Scoreboard';
 import Commentators from './frostbite/components/Commentators';
 import BigCamera from './frostbite/components/BigCamera';
+import SideSideCamera from './frostbite/components/SideSideCamera';
+
+console.log(SideSideCamera);
 
 class Graphics extends Component {
 	state = {
 		scoreboard: null,
-		activeOverlay: 'bigcamera'
+		activeOverlay: 'sidesidecamera'
 	};
 
-	styles = {
+	styles = {};
 
-	};
-
-	renderGraphics () {
+	renderGraphics() {
 		const { scoreboard, activeOverlay } = this.state;
+		const graphics = [
+			{ Component: Scoreboard, overlayName: 'scoreboard' },
+			{ Component: Commentators, overlayName: 'commentators' },
+			{ Component: BigCamera, overlayName: 'bigcamera' },
+			{ Component: SideSideCamera, overlayName: 'sidesidecamera' }
+		];
 
 		return (
 			<React.Fragment>
-				<Scoreboard enabled={activeOverlay === 'scoreboard'} scoreboard={scoreboard} />
-				<Commentators enabled={activeOverlay === 'commentators'} scoreboard={scoreboard} />
-				<BigCamera enabled={activeOverlay === 'bigcamera'} scoreboard={scoreboard} />
+				{graphics.map(graphic => (
+					<graphic.Component
+						key={graphic.overlayName}
+						enabled={activeOverlay === graphic.overlayName}
+						scoreboard={scoreboard}
+					/>
+				))}
 			</React.Fragment>
 		);
 	}
@@ -32,7 +43,9 @@ class Graphics extends Component {
 
 		return (
 			<React.Fragment>
-        <style dangerouslySetInnerHTML={{__html: `
+				<style
+					dangerouslySetInnerHTML={{
+						__html: `
           @font-face {
             font-family: 'BigNoodle';
             src: url('build${font}') format('woff');
@@ -40,7 +53,9 @@ class Graphics extends Component {
           #graphics * {
             font-family: BigNoodle;
           }
-        `}} />
+        `
+					}}
+				/>
 				{scoreboard ? this.renderGraphics() : null}
 				<NodeCGReplicant
 					replicantName="scoreboard"

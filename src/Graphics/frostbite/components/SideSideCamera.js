@@ -8,23 +8,23 @@ import graphics from '../scripts/graphics';
 const styles = {
   friends: {
     position: 'absolute',
-    bottom: 73,
-    left: -13
+    bottom: 120,
+    left: 290
   }
 };
 
-class BigCamera extends PureComponent {
+class SideSideCamera extends PureComponent {
 	render() {
 		const { scoreboard, classes, enabled } = this.props;
 
 
 		return (
 			<Graphic enabled={enabled}>
-				<GraphicImage src={`build${graphics.cam1}`} />
+				<GraphicImage src={`build${graphics.cam2}`} />
         <img className={classes.friends} src="build/friends/6x1.png" alt=""/>
 			</Graphic>
 		);
 	}
 }
 
-export default withStyles(styles)(BigCamera);
+export default withStyles(styles)(SideSideCamera);
