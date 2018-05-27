@@ -49,13 +49,13 @@ class Player extends Component {
             <Suggest
               inputProps={{
                 className: classes.sponsor,
-                label: 'Sponsor',
-                value: sponsor
+                label: 'Sponsor'
               }}
 							onChange={selection =>
 								this.onChange('sponsor', selection)
 							}
 							items={sponsors}
+              inputValue={sponsor}
 						/>
 					</Grid>
 					<Grid item>
@@ -68,6 +68,7 @@ class Player extends Component {
 								this.onChange('country', selection)
 							}
 							items={flags}
+              inputValue={country}
 						/>
 					</Grid>
 				</Grid>
@@ -84,15 +85,6 @@ class Player extends Component {
 				</Grid>
 				<Grid item container direction="row" spacing={16}>
 					<Grid item>
-						{/* <Autosuggest
-              suggestions={suggestions}
-              onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-              onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-              getSuggestionValue={getSuggestionValue}
-              renderSuggestion={renderSuggestion}
-              inputProps={inputProps}
-              renderInputComponent={renderInputComponent}
-            /> */}
 						<TextField
 							label="Character"
 							value={character || ''}

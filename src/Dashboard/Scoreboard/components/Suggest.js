@@ -35,14 +35,14 @@ function renderSuggestion({
 
 class Suggest extends Component {
 	render() {
-		const { classes, onChange, items, inputProps } = this.props;
+		const { classes, onChange, items, inputProps, inputValue } = this.props;
 
 		return (
 			<Downshift
-				onInputValueChange={inputValue =>
-					this.props.onChange(inputValue)
-				}
-				onChange={selection => this.props.onChange(selection)}
+        inputValue={inputValue}
+				onInputValueChange={(inputValue, stateAndHelpers) =>{
+					this.props.onChange(inputValue);
+				}}
 			>
 				{({
 					getInputProps,

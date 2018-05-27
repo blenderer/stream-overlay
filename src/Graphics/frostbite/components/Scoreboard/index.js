@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Graphic from '../../../components/Graphic';
 import GraphicImage from '../../../components/GraphicImage';
 import Tag from './Tag';
+import SponsorFlag from './SponsorFlag';
 
 import graphics from '../../scripts/graphics';
 import flags from '../../scripts/flags';
@@ -70,38 +71,25 @@ class Scoreboard extends React.Component {
           name={player1.name}
           style={{ left: 2 }}
         />
-				{/* <div className={classes.name} >
-					<span className={classes.sponsor}>
-						{player1.sponsor ? player1.sponsor + ' ' : null}
-					</span>
-					{player1.name}
-				</div> */}
-				<div className={classes.name} style={{ right: 2 }}>
-					<span className={classes.sponsor}>
-						{player2.sponsor ? player2.sponsor + ' ' : null}
-					</span>
-					{player2.name}
-				</div>
-				{flagMap[player1.country] && (
-					<img
-						className={classes.flag}
-						src={`build/flags/${player1.country}.png`}
-						style={{
-							left: 417
-						}}
-						alt=""
-					/>
-				)}
-
-				{flagMap[player2.country] && (
-					<img
-						className={classes.flag}
-						src={`build/flags/${player2.country}.png`}
-						style={{
-							right: 417
-						}}
-						alt=""
-					/>
+        <Tag
+          sponsor={player2.sponsor}
+          name={player2.name}
+          style={{ right: 2 }}
+        />
+        <SponsorFlag
+          sponsor={player1.sponsor}
+          country={player1.country}
+          style={{
+            left: 417
+          }}
+        />
+        <SponsorFlag
+          sponsor={player2.sponsor}
+          country={player2.country}
+          style={{
+            right: 417
+          }}
+        />
 				)}
 			</React.Fragment>
 		);
@@ -120,18 +108,40 @@ class Scoreboard extends React.Component {
 				<GraphicImage src={`build${graphics.doublesBase}`} />
 				<GraphicImage src={`build${graphics.scoreLeftDoubles}`} />
 				<GraphicImage src={`build${graphics.scoreRightDoubles}`} />
-				<div className={classes.name} style={{ left: 2, top: 0 }}>
-					{player1.name}
-				</div>
-				<div className={classes.name} style={{ left: 2, top: 46 }}>
-					{player2.name}
-				</div>
-				<div className={classes.name} style={{ right: 2, top: 0 }}>
-					{player3.name}
-				</div>
-				<div className={classes.name} style={{ right: 2, top: 46 }}>
-					{player4.name}
-				</div>
+        <Tag
+          sponsor={player1.sponsor}
+          name={player1.name}
+          style={{ left: 2, top: 0 }}
+        />
+        <Tag
+          sponsor={player2.sponsor}
+          name={player2.name}
+          style={{ left: 2, top: 46 }}
+        />
+        <Tag
+          sponsor={player3.sponsor}
+          name={player3.name}
+          style={{ right: 2, top: 0 }}
+        />
+        <Tag
+          sponsor={player4.sponsor}
+          name={player4.name}
+          style={{ right: 2, top: 46 }}
+        />
+        <SponsorFlag
+          sponsor={player1.sponsor}
+          country={player1.country}
+          style={{
+            left: 417
+          }}
+        />
+        <SponsorFlag
+          sponsor={player3.sponsor}
+          country={player3.country}
+          style={{
+            right: 417
+          }}
+        />
 			</React.Fragment>
 		);
 	}
