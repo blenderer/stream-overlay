@@ -61,22 +61,37 @@ class SponsorFlag extends React.Component {
     }
 
     this.interval = () => {
-      if (this.state.images.length < 2) {
+      const { images, currentImageIndex } = this.state;
+
+      if (images.length < 1) {
         return false;
       }
-      
+
+      if (images.length === 1) {
+
+        if (currentImageIndex !== 0) {
+          this.setState(prevState => ({
+            currentImageIndex: 0,
+            leaving: false
+          }));
+        }
+
+        return false;
+      }
+
       this.setState(prevState => ({
         leaving: true
       }));
 
       setTimeout(() => {
         this.setState((prevState) => {
-          const atEnd = prevState.currentImageIndex >= prevState.images.length - 1;
+          const { currentImageIndex } = prevState;
+          const atEnd = currentImageIndex >= prevState.images.length - 1;
 
           return {
             ...prevState,
             leaving: false,
-            currentImageIndex: atEnd ? 0 : prevState.currentImageIndex + 1
+            currentImageIndex: atEnd ? 0 : currentImageIndex + 1
           };
         });
       }, 1900);

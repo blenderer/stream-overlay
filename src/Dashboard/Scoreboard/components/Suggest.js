@@ -41,11 +41,18 @@ class Suggest extends Component {
 			<Downshift
         inputValue={inputValue}
         stateReducer={(state, changes) => {
-          if (changes.type === '__autocomplete_mouseup__') {
+          if (!state.inputValue) {
             return {
-              ...state,
-              selectedItem: state.inputValue,
-              isOpen: false
+              ...changes,
+              inputValue: state.inputValue,
+              selectedItem: state.inputValue
+            };
+          }
+
+          if (state.selectedItem === '') {
+            return {
+              ...changes,
+              inputValue: state.inputValue
             };
           }
           return changes;
