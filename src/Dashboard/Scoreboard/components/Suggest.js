@@ -81,27 +81,6 @@ class Suggest extends Component {
 									)}
 							</Paper>
 						) : null}
-
-						{/* <div
-              {...getItemProps({
-                key: item,
-                index,
-                item,
-                style: {
-                  backgroundColor:
-                    highlightedIndex ===
-                    index
-                      ? 'lightgray'
-                      : 'white',
-                  fontWeight:
-                    selectedItem === item
-                      ? 'bold'
-                      : 'normal'
-                }
-              })}
-            >
-              {item}
-            </div> */}
 					</div>
 				)}
 			</Downshift>
