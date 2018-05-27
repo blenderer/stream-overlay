@@ -9,14 +9,14 @@ import { withStyles } from '@material-ui/core/styles';
 class CurrentSet extends Component {
 
   render() {
-    const { classes } = this.props;
+    const { classes, ...restProps } = this.props;
     return (
       <Grid container direction='column' spacing={16}>
         <Grid item>
-          <Players />
+          <Players {...restProps} />
         </Grid>
         <Grid item>
-          <Game />
+          <Game {...restProps} />
         </Grid>
       </Grid>
     );

@@ -7,33 +7,25 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import NodeCGReplicant from '../../../NodeCGReplicant';
 
 import { withStyles } from '@material-ui/core/styles';
 
 class Game extends Component {
-	state = {
-		scoreboard: null
-	};
 
 	handleChange = (key, value) => {
-		this.setState(prevState => {
-			return {
-				...prevState,
-				scoreboard: {
-					...prevState.scoreboard,
-					set: {
-						...prevState.scoreboard.set,
-						[key]: value
-					}
-				}
-			};
+		const scoreboard = this.props.scoreboard;
+
+		this.props.onChange({
+			...scoreboard,
+			set: {
+				...scoreboard.set,
+				[key]: value
+			}
 		});
 	};
 
-  renderForm () {
-    const { classes } = this.props;
-		const { scoreboard } = this.state;
+  render () {
+    const { classes, scoreboard } = this.props;
 
 		return (
 			<Grid container direction="column" spacing={16}>
@@ -162,24 +154,6 @@ class Game extends Component {
 			</Grid>
 		);
   }
-
-	render() {
-		const { classes } = this.props;
-		const { scoreboard } = this.state;
-
-		return (
-			<React.Fragment>
-				<NodeCGReplicant
-					replicantName="scoreboard"
-					value={this.state.scoreboard}
-					onNewValue={newValue => {
-						this.setState({ scoreboard: newValue });
-					}}
-				/>
-        { scoreboard ? this.renderForm() : null}
-			</React.Fragment>
-		);
-	}
 }
 
 const styles = theme => ({

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import _isEqual from 'lodash/isEqual';
 
 
-class NodeCGReplicant extends Component {
+class NodeCGReplicant extends React.PureComponent {
   constructor (props) {
     super(props);
 
