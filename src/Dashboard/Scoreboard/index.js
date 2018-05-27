@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Button from '@material-ui/core/Button';
 
 import Event from './Event';
 import CurrentSet from './CurrentSet';
@@ -13,72 +14,125 @@ import NodeCGReplicant from '../NodeCGReplicant';
 import { withStyles } from '@material-ui/core/styles';
 
 class Scoreboard extends Component {
-  state = {
-    value: 0,
-    sceneList: [],
-    programScene: {}
-  };
+	state = {
+		value: 0,
+		sceneList: [],
+		programScene: {}
+	};
 
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
-
-  switchScene = (scene) => {
-    window.nodecg.sendMessage('switch-scene', scene);
+  save = () => {
+    this.setState({scoreboard: this.state.draft});
   }
 
-  render() {
-    const { classes } = this.props;
-    const { value, sceneList, programScene } = this.state;
+	handleChange = (event, value) => {
+		this.setState({ value });
+	};
 
-    return (
-      <React.Fragment>
-        <NodeCGReplicant
-          replicantName='obs:sceneList'
-          value={sceneList}
-          onNewValue={(newValue) => {
-            this.setState({sceneList: newValue})
-          }}
-        />
-        <NodeCGReplicant
-          replicantName='obs:programScene'
-          value={programScene}
-          onNewValue={(newValue) => {
-            this.setState({programScene: newValue})
-          }}
-        />
-        {sceneList.map((scene) => {
-          return (
-            <button onClick={() => {this.switchScene(scene)}} key={scene}>
-              {scene}
-            </button>
-          )
-        })}
-        <div>
+  updateDraft = value => {
+    this.setState({ draft: value });
+  }
+
+	switchScene = scene => {
+		window.nodecg.sendMessage('switch-scene', scene);
+	};
+
+	renderScoreboard() {
+		const { classes } = this.props;
+		const { value, sceneList, programScene, scoreboard, draft } = this.state;
+
+		return (
+			<React.Fragment>
+				<Button onClick={this.save} variant="raised" color="primary">
+					Save
+				</Button>
+				<Tabs
+					style={{ marginBottom: 15 }}
+					value={value}
+					onChange={this.handleChange}
+				>
+					<Tab label="Event Info" />
+					<Tab label="Current Set" />
+					<Tab label="Commentary" />
+				</Tabs>
+				{value === 0 && (
+					<Event
+						scoreboard={draft}
+						onChange={this.updateDraft}
+					/>
+				)}
+				{value === 1 && (
+					<CurrentSet
+						scoreboard={draft}
+						onChange={this.updateDraft}
+					/>
+				)}
+				{value === 2 && (
+					<Commentary
+						scoreboard={draft}
+						onChange={this.updateDraft}
+					/>
+				)}
+			</React.Fragment>
+		);
+	}
+
+	render() {
+		const { classes } = this.props;
+		const { value, sceneList, programScene, scoreboard } = this.state;
+
+		return (
+			<React.Fragment>
+				<NodeCGReplicant
+					replicantName="scoreboard"
+					value={this.state.scoreboard}
+					onNewValue={newValue => {
+						this.setState({ scoreboard: newValue, draft: newValue });
+					}}
+				/>
+				<NodeCGReplicant
+					replicantName="obs:sceneList"
+					value={sceneList}
+					onNewValue={newValue => {
+						this.setState({ sceneList: newValue });
+					}}
+				/>
+				<NodeCGReplicant
+					replicantName="obs:programScene"
+					value={programScene}
+					onNewValue={newValue => {
+						this.setState({ programScene: newValue });
+					}}
+				/>
+				{sceneList.map(scene => {
+					return (
+						<button
+							onClick={() => {
+								this.switchScene(scene);
+							}}
+							key={scene}
+						>
+							{scene}
+						</button>
+					);
+				})}
+				{/* <div>
           {JSON.stringify(programScene)}
-        </div>
-        <div>
+        </div> */}
+				{/* <div>
           <button onClick={this.switchScene}>
             switch scene!
           </button>
-        </div>
-        <Tabs style={{marginBottom: 15}} value={value} onChange={this.handleChange}>
-          <Tab label="Event Info" />
-          <Tab label="Current Set" />
-          <Tab label="Commentary" />
-        </Tabs>
-        {value === 0 && <Event />}
-        {value === 1 && <CurrentSet />}
-        {value === 2 && <Commentary />}
-      </React.Fragment>
-    );
-  }
+        </div> */}
+				{this.state.scoreboard ? this.renderScoreboard() : null}
+			</React.Fragment>
+		);
+	}
 }
 
 const styles = theme => ({
-  sponsor: {
-    width: 60
-  }
+	sponsor: {
+		width: 60
+	}
 });
 
 export default withStyles(styles)(Scoreboard);

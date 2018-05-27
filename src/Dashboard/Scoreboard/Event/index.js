@@ -8,30 +8,20 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
-import NodeCGReplicant from '../../NodeCGReplicant';
-
 import { withStyles } from '@material-ui/core/styles';
 
 class Event extends Component {
-  state = {
-    scoreboard: null
-  };
 
   handleChange = (key, value) => {
-    this.setState((prevState) => {
-      return {
-        ...prevState,
-        scoreboard: {
-          ...prevState.scoreboard,
-          [key]: value
-        }
-      };
+    const { scoreboard } = this.props;
+    this.props.onChange({
+      ...scoreboard,
+      [key]: value
     });
   }
 
-  renderForm = () => {
-    const { classes } = this.props;
-    const state = this.state;
+  render () {
+    const { classes, scoreboard } = this.props;
 
     return (
       <Grid item container direction='column' spacing={16}>
@@ -39,21 +29,21 @@ class Event extends Component {
           <TextField
             label='Event Name'
             onChange={(e) => {this.handleChange('eventName', e.target.value)}}
-            value={state.scoreboard.eventName}
+            value={scoreboard.eventName}
           />
         </Grid>
         <Grid item>
           <TextField
             label='Event Location'
             onChange={(e) => {this.handleChange('eventLocation', e.target.value)}}
-            value={state.scoreboard.eventLocation}
+            value={scoreboard.eventLocation}
           />
         </Grid>
         <Grid item>
           <TextField
             label='Video Game'
             onChange={(e) => {this.handleChange('videoGame', e.target.value)}}
-            value={state.scoreboard.videoGame}
+            value={scoreboard.videoGame}
           />
         </Grid>
         <Grid item>
@@ -62,7 +52,7 @@ class Event extends Component {
             <RadioGroup
               aria-label="format"
               name="format"
-              value={this.state.scoreboard.format}
+              value={scoreboard.format}
               onChange={(e) => {
                 this.handleChange('format', e.target.value)
               }}
@@ -73,22 +63,6 @@ class Event extends Component {
           </FormControl>
         </Grid>
       </Grid>
-    );
-  }
-
-  render() {
-    const { classes } = this.props;
-    const state = this.state;
-
-    return (
-      <React.Fragment>
-        <NodeCGReplicant
-          replicantName='scoreboard'
-          value={this.state.scoreboard}
-          onNewValue={(newValue) => {this.setState({scoreboard: newValue})}}
-        />
-        {state.scoreboard ? this.renderForm() : null}
-      </React.Fragment>
     );
   }
 }
