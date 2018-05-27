@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Graphic from '../../components/Graphic';
-import GraphicImage from '../../components/GraphicImage';
+import Graphic from '../../../components/Graphic';
+import GraphicImage from '../../../components/GraphicImage';
+import Tag from './Tag';
 
-import graphics from '../scripts/graphics';
-import flags from '../scripts/flags';
+import graphics from '../../scripts/graphics';
+import flags from '../../scripts/flags';
+import sponsors from '../../scripts/sponsors';
 
 const styles = {
 	name: {
@@ -24,61 +26,83 @@ const styles = {
 		left: 0,
 		right: 0
 	},
-  flag: {
-    position: 'absolute',
-    top: 0,
-    width: 49,
-    height: 54
-  },
+	flag: {
+		position: 'absolute',
+		top: 0,
+		width: 49,
+		height: 54
+	},
 	sponsor: {
 		color: 'rgba(225, 225, 225, 1)'
 	}
 };
 
-const flagMap = flags.reduce((map, flagName) => ({
-  ...map,
-  [flagName]: true
-}), {});
+const flagMap = flags.reduce(
+	(map, flagName) => ({
+		...map,
+		[flagName]: true
+	}),
+	{}
+);
+
+const sponsorMap = sponsors.reduce(
+	(map, sponsorName) => ({
+		...map,
+		[sponsorName]: true
+	}),
+	{}
+);
 
 class Scoreboard extends React.Component {
 	renderSingles() {
 		const { classes, scoreboard } = this.props;
+
+		const player1 = scoreboard.players[0];
+		const player2 = scoreboard.players[1];
 
 		return (
 			<React.Fragment>
 				<GraphicImage src={`build${graphics.singlesBase}`} />
 				<GraphicImage src={`build${graphics.scoreLeftSingles}`} />
 				<GraphicImage src={`build${graphics.scoreRightSingles}`} />
-				<div className={classes.name} style={{ left: 2 }}>
-					<span className={classes.sponsor}>{scoreboard.players[0].sponsor ? scoreboard.players[0].sponsor + ' ' : null }</span>
-					{scoreboard.players[0].name}
-				</div>
+        <Tag
+          sponsor={player1.sponsor}
+          name={player1.name}
+          style={{ left: 2 }}
+        />
+				{/* <div className={classes.name} >
+					<span className={classes.sponsor}>
+						{player1.sponsor ? player1.sponsor + ' ' : null}
+					</span>
+					{player1.name}
+				</div> */}
 				<div className={classes.name} style={{ right: 2 }}>
-					<span className={classes.sponsor}>{scoreboard.players[1].sponsor ? scoreboard.players[1].sponsor + ' ' : null }</span>
-					{scoreboard.players[1].name}
+					<span className={classes.sponsor}>
+						{player2.sponsor ? player2.sponsor + ' ' : null}
+					</span>
+					{player2.name}
 				</div>
-        {flagMap[scoreboard.players[0].country] &&
-          <img
-            className={classes.flag}
-  					src={`build/flags/${scoreboard.players[0].country}.png`}
-  					style={{
-  						left: 417
-  					}}
-  					alt=""
-  				/>
-        }
+				{flagMap[player1.country] && (
+					<img
+						className={classes.flag}
+						src={`build/flags/${player1.country}.png`}
+						style={{
+							left: 417
+						}}
+						alt=""
+					/>
+				)}
 
-        {flagMap[scoreboard.players[1].country] &&
-          <img
-            className={classes.flag}
-            src={`build/flags/${scoreboard.players[1].country}.png`}
-            style={{
-              right: 417
-            }}
-            alt=""
-          />
-        }
-
+				{flagMap[player2.country] && (
+					<img
+						className={classes.flag}
+						src={`build/flags/${player2.country}.png`}
+						style={{
+							right: 417
+						}}
+						alt=""
+					/>
+				)}
 			</React.Fragment>
 		);
 	}
@@ -86,22 +110,27 @@ class Scoreboard extends React.Component {
 	renderDoubles() {
 		const { classes, scoreboard } = this.props;
 
+		const player1 = scoreboard.players[0];
+		const player2 = scoreboard.players[1];
+		const player3 = scoreboard.players[2];
+		const player4 = scoreboard.players[3];
+
 		return (
 			<React.Fragment>
 				<GraphicImage src={`build${graphics.doublesBase}`} />
 				<GraphicImage src={`build${graphics.scoreLeftDoubles}`} />
 				<GraphicImage src={`build${graphics.scoreRightDoubles}`} />
 				<div className={classes.name} style={{ left: 2, top: 0 }}>
-					{scoreboard.players[0].name}
+					{player1.name}
 				</div>
 				<div className={classes.name} style={{ left: 2, top: 46 }}>
-					{scoreboard.players[1].name}
+					{player2.name}
 				</div>
 				<div className={classes.name} style={{ right: 2, top: 0 }}>
-					{scoreboard.players[2].name}
+					{player3.name}
 				</div>
 				<div className={classes.name} style={{ right: 2, top: 46 }}>
-					{scoreboard.players[3].name}
+					{player4.name}
 				</div>
 			</React.Fragment>
 		);

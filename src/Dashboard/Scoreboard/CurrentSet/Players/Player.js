@@ -1,118 +1,90 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import Autosuggest from 'react-autosuggest';
+import Suggest from '../../components/Suggest';
+
+import flags from '../../../../Graphics/frostbite/scripts/flags';
+import sponsors from '../../../../Graphics/frostbite/scripts/sponsors';
 
 import characters from '../../../../data/smash4/characters';
 
 import { withStyles } from '@material-ui/core/styles';
 
 const getSuggestions = value => {
-  const inputValue = value.trim().toLowerCase();
-  const inputLength = inputValue.length;
+	const inputValue = value.trim().toLowerCase();
+	const inputLength = inputValue.length;
 
-  return inputLength === 0 ? [] : characters.filter(character =>
-    character.toLowerCase().slice(0, inputLength) === inputValue
-  );
+	return inputLength === 0
+		? []
+		: characters.filter(
+				character =>
+					character.toLowerCase().slice(0, inputLength) === inputValue
+		  );
 };
 
 const getSuggestionValue = suggestion => suggestion;
-const renderSuggestion = suggestion => (
-  <div>
-    {suggestion}
-  </div>
-);
+const renderSuggestion = suggestion => <div>{suggestion}</div>;
 
-const renderInputComponent = inputProps => (
-  <TextField {...inputProps} />
-);
+const renderInputComponent = inputProps => <TextField {...inputProps} />;
 
 class Player extends Component {
+	onChange = (key, value) => {
+		this.props.onChange({
+			...this.props.model,
+			[key]: value
+		});
+	};
 
-  // onChange = (event, { newValue }) => {
-  //   this.setState({
-  //     value: newValue
-  //   });
-  // };
-  //
-  // // Autosuggest will call this function every time you need to update suggestions.
-  // // You already implemented this logic above, so just use it.
-  // onSuggestionsFetchRequested = ({ value }) => {
-  //   this.setState({
-  //     suggestions: getSuggestions(value)
-  //   });
-  // };
-  //
-  // // Autosuggest will call this function every time you need to clear suggestions.
-  // onSuggestionsClearRequested = () => {
-  //   this.setState({
-  //     suggestions: []
-  //   });
-  // };
+	render() {
+		const { classes, number } = this.props;
+		const { sponsor, country, name, character } = this.props.model;
 
-  onChange = (key, value) => {
-    this.props.onChange({
-      ...this.props.model,
-      [key]: value
-    });
-  }
-
-  render() {
-    const { classes, number } = this.props;
-    const {
-      sponsor,
-      country,
-      name,
-      character
-    } = this.props.model;
-
-    // const inputProps = {
-    //   placeholder: 'Character',
-    //   value,
-    //   onChange: this.onChange
-    // };
-
-    return (
-      <Grid container direction='column' spacing={16}>
-        <Grid item>
-          <h2>Player {number}</h2>
-        </Grid>
-        <Grid item container direction='row' spacing={16}>
-          <Grid item>
-            <TextField
-              className={classes.sponsor}
-              label='Sponsor'
-              value={sponsor || ''}
-              onChange={(e) => {
-                this.onChange('sponsor', e.target.value)
+		return (
+			<Grid container direction="column" spacing={16}>
+				<Grid item>
+					<h2>Player {number}</h2>
+				</Grid>
+				<Grid item container direction="row" spacing={16}>
+					<Grid item>
+            <Suggest
+              inputProps={{
+                className: classes.sponsor,
+                label: 'Sponsor',
+                value: sponsor
               }}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              className={classes.sponsor}
-              label='Country'
-              value={country || ''}
-              onChange={(e) => {
-                this.onChange('country', e.target.value)
+							onChange={selection =>
+								this.onChange('sponsor', selection)
+							}
+							items={sponsors}
+						/>
+					</Grid>
+					<Grid item>
+						<Suggest
+              inputProps={{
+                className: classes.sponsor,
+                label: 'Country'
               }}
-            />
-          </Grid>
-        </Grid>
-        <Grid item container direction='row' spacing={16}>
-          <Grid item>
-            <TextField
-              label='Gamer Tag'
-              value={name || ''}
-              onChange={(e) => {
-                this.onChange('name', e.target.value)
-              }}
-            />
-          </Grid>
-        </Grid>
-        <Grid item container direction='row' spacing={16}>
-          <Grid item>
-            {/* <Autosuggest
+							onChange={selection =>
+								this.onChange('country', selection)
+							}
+							items={flags}
+						/>
+					</Grid>
+				</Grid>
+				<Grid item container direction="row" spacing={16}>
+					<Grid item>
+						<TextField
+							label="Gamer Tag"
+							value={name || ''}
+							onChange={e => {
+								this.onChange('name', e.target.value);
+							}}
+						/>
+					</Grid>
+				</Grid>
+				<Grid item container direction="row" spacing={16}>
+					<Grid item>
+						{/* <Autosuggest
               suggestions={suggestions}
               onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
               onSuggestionsClearRequested={this.onSuggestionsClearRequested}
@@ -121,24 +93,24 @@ class Player extends Component {
               inputProps={inputProps}
               renderInputComponent={renderInputComponent}
             /> */}
-            <TextField
-              label='Character'
-              value={character || ''}
-              onChange={(e) => {
-                this.onChange('character', e.target.value)
-              }}
-            />
-          </Grid>
-        </Grid>
-      </Grid>
-    );
-  }
+						<TextField
+							label="Character"
+							value={character || ''}
+							onChange={e => {
+								this.onChange('character', e.target.value);
+							}}
+						/>
+					</Grid>
+				</Grid>
+			</Grid>
+		);
+	}
 }
 
 const styles = theme => ({
-  sponsor: {
-    width: 60
-  }
+	sponsor: {
+		width: 60
+	}
 });
 
 export default withStyles(styles)(Player);
