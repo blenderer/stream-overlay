@@ -61,7 +61,7 @@ class Players extends Component {
 							color="secondary"
 							onClick={this.swapSides}
 						>
-							Swap Sides
+							Swap Seat Sides
 						</Button>
 					</Grid>
 				</Grid>
