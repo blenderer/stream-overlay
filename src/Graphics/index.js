@@ -5,13 +5,13 @@ import Scoreboard from './frostbite/components/Scoreboard';
 import Commentators from './frostbite/components/Commentators';
 import BigCamera from './frostbite/components/BigCamera';
 import SideSideCamera from './frostbite/components/SideSideCamera';
-
-console.log(SideSideCamera);
+import ThreeCam from './frostbite/components/ThreeCam';
+import Crowd from './frostbite/components/Crowd';
 
 class Graphics extends Component {
 	state = {
 		scoreboard: null,
-		activeOverlay: 'sidesidecamera'
+		activeOverlay: 'crowd'
 	};
 
 	styles = {};
@@ -22,7 +22,9 @@ class Graphics extends Component {
 			{ Component: Scoreboard, overlayName: 'scoreboard' },
 			{ Component: Commentators, overlayName: 'commentators' },
 			{ Component: BigCamera, overlayName: 'bigcamera' },
-			{ Component: SideSideCamera, overlayName: 'sidesidecamera' }
+			{ Component: SideSideCamera, overlayName: 'sidesidecamera' },
+			{ Component: ThreeCam, overlayName: 'threecam' },
+			{ Component: Crowd, overlayName: 'crowd' },
 		];
 
 		return (
