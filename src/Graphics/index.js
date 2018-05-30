@@ -17,6 +17,12 @@ class Graphics extends Component {
 
 	styles = {};
 
+	componentDidMount () {
+		window.nodecg.listenFor('obs:transitioning', (data) => {
+			console.log(data);
+		});
+	}
+
 	renderGraphics() {
 		const { scoreboard, activeOverlay } = this.state;
 		const graphics = [
