@@ -7,11 +7,12 @@ import BigCamera from './smashnsplash/components/BigCamera';
 import SideSideCamera from './smashnsplash/components/SideSideCamera';
 import ThreeCam from './smashnsplash/components/ThreeCam';
 import Crowd from './smashnsplash/components/Crowd';
+import MidSetReport from './smashnsplash/components/MidSetReport';
 
 class Graphics extends Component {
 	state = {
 		scoreboard: null,
-		activeOverlay: 'crowd'
+		activeOverlay: 'midsetreport'
 	};
 
 	styles = {};
@@ -25,6 +26,7 @@ class Graphics extends Component {
 			{ Component: SideSideCamera, overlayName: 'sidesidecamera' },
 			{ Component: ThreeCam, overlayName: 'threecam' },
 			{ Component: Crowd, overlayName: 'crowd' },
+			{ Component: MidSetReport, overlayName: 'midsetreport' },
 		];
 
 		return (

@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Suggest from '../components/Suggest';
 
-import sponsors from '../../../Graphics/frostbite/scripts/sponsors';
+import sponsors from '../../../Graphics/smashnsplash/scripts/sponsors';
 
 import { withStyles } from '@material-ui/core/styles';
 

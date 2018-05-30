@@ -3,8 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Suggest from '../../components/Suggest';
 
-import flags from '../../../../Graphics/frostbite/scripts/flags';
-import sponsors from '../../../../Graphics/frostbite/scripts/sponsors';
+import flags from '../../../../Graphics/smashnsplash/scripts/flags';
+import sponsors from '../../../../Graphics/smashnsplash/scripts/sponsors';
 
 import characters from '../../../../data/smash4/characters';
 import rivals from 'game-characters/rivalsofaether';
