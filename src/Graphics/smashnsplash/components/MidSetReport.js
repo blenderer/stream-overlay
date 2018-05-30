@@ -13,8 +13,6 @@ class MidSetReport extends PureComponent {
 	render() {
 		const { scoreboard, classes, enabled } = this.props;
 
-    console.log(scoreboard.set.player1);
-
     const player1 = [
       <GraphicImage key={0} src={`build${graphics.ggBo31L}`} />,
       <GraphicImage key={1} src={`build${graphics.ggBo32L}`} />
