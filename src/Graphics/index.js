@@ -12,7 +12,7 @@ import MidSetReport from './smashnsplash/components/MidSetReport';
 class Graphics extends Component {
 	state = {
 		scoreboard: null,
-		activeOverlay: 'midsetreport'
+		activeOverlay: 'commentators'
 	};
 
 	styles = {};

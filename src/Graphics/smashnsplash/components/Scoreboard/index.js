@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Graphic from '../../../components/Graphic';
 import GraphicImage from '../../../components/GraphicImage';
+import TwitchName from '../../../components/TwitchName';
 import Tag from './Tag';
 import SponsorFlag from './SponsorFlag';
 

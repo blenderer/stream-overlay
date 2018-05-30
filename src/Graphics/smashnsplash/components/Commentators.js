@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Graphic from '../../components/Graphic';
 import GraphicImage from '../../components/GraphicImage';
+import TwitchName from '../../components/TwitchName';
+import FadeRotator from '../../components/FadeRotator';
 
 import Tag from './Scoreboard/Tag';
 
@@ -20,6 +22,7 @@ const styles = {
     fontSize: 29,
     left: 156,
     width: 367,
+		height: 33,
     textAlign: 'center'
 	}
 };
@@ -46,16 +49,34 @@ class Commentators extends PureComponent {
 					name={commentator2.name}
 					style={{ right: 105 }}
 				/>
-				{commentator1.twitter ? (
-					<div className={classes.twitterTag}>
-						@{commentator1.twitter}
-					</div>
-				) : null}
-				{commentator2.twitter ? (
-					<div style={{right: 156, left: 'auto'}} className={classes.twitterTag}>
-						@{commentator2.twitter}
-					</div>
-				) : null}
+				<div className={classes.twitterTag}>
+					<FadeRotator>
+						{commentator1.twitch ? (
+							<TwitchName>
+								{commentator1.twitch}
+							</TwitchName>
+						) : null}
+						{commentator1.twitter ? (
+							<React.Fragment>
+								@{commentator1.twitter}
+							</React.Fragment>
+						) : null}
+					</FadeRotator>
+				</div>
+				<div className={classes.twitterTag} style={{right: 156, left: 'auto'}}>
+					<FadeRotator>
+						{commentator2.twitch ? (
+							<TwitchName>
+								{commentator2.twitch}
+							</TwitchName>
+						) : null}
+						{commentator2.twitter ? (
+							<React.Fragment>
+								@{commentator2.twitter}
+							</React.Fragment>
+						) : null}
+					</FadeRotator>
+				</div>
 			</Graphic>
 		);
 	}
