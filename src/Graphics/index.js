@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import font from './frostbite/fonts/big_noodle_titling.woff';
+import font from './smashnsplash/fonts/big_noodle_titling.woff';
 import NodeCGReplicant from '../Dashboard/NodeCGReplicant';
-import Scoreboard from './frostbite/components/Scoreboard';
-import Commentators from './frostbite/components/Commentators';
-import BigCamera from './frostbite/components/BigCamera';
-import SideSideCamera from './frostbite/components/SideSideCamera';
-import ThreeCam from './frostbite/components/ThreeCam';
-import Crowd from './frostbite/components/Crowd';
+import Scoreboard from './smashnsplash/components/Scoreboard';
+import Commentators from './smashnsplash/components/Commentators';
+import BigCamera from './smashnsplash/components/BigCamera';
+import SideSideCamera from './smashnsplash/components/SideSideCamera';
+import ThreeCam from './smashnsplash/components/ThreeCam';
+import Crowd from './smashnsplash/components/Crowd';
 
 class Graphics extends Component {
 	state = {
