@@ -44,14 +44,12 @@ class Graphics extends Component {
 			{ Component: Intermission, overlayName: 'Intermission' },
 		];
 
-		console.log(programScene);
-
 		return (
 			<React.Fragment>
 				{graphics.map(graphic => (
 					<graphic.Component
 						key={graphic.overlayName}
-						enabled={activeOverlay === graphic.overlayName}
+						enabled={programScene.name === graphic.overlayName}
 						scoreboard={scoreboard}
 					/>
 				))}
@@ -77,7 +75,7 @@ class Graphics extends Component {
         `
 					}}
 				/>
-				{scoreboard ? this.renderGraphics() : null}
+				{scoreboard && programScene ? this.renderGraphics() : null}
 				<NodeCGReplicant
 					replicantName="scoreboard"
 					value={this.state.scoreboard}

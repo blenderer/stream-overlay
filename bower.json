@@ -1,0 +1,21 @@
+{
+  "name": "gooshi-scoreboard",
+  "description": "Physics-like animations for pretty particles",
+  "main": [],
+  "dependencies": {
+    "nodecg-widget-obs": "npm:nodecg-widget-obs#^4.0.0"
+  },
+  "devDependencies": {},
+  "moduleType": [],
+  "keywords": [],
+  "authors": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "private": true
+}
