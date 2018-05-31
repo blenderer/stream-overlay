@@ -5,6 +5,7 @@ import Scoreboard from './smashnsplash/components/Scoreboard';
 import Commentators from './smashnsplash/components/Commentators';
 import BigCamera from './smashnsplash/components/BigCamera';
 import SideSideCamera from './smashnsplash/components/SideSideCamera';
+import Intermission from './smashnsplash/components/Intermission';
 import ThreeCam from './smashnsplash/components/ThreeCam';
 import Crowd from './smashnsplash/components/Crowd';
 import MidSetReport from './smashnsplash/components/MidSetReport';
@@ -12,7 +13,8 @@ import MidSetReport from './smashnsplash/components/MidSetReport';
 class Graphics extends Component {
 	state = {
 		scoreboard: null,
-		activeOverlay: 'commentators'
+		activeOverlay: 'Intermission',
+		programScene: null
 	};
 
 	styles = {};
@@ -24,16 +26,25 @@ class Graphics extends Component {
 	}
 
 	renderGraphics() {
-		const { scoreboard, activeOverlay } = this.state;
+		const { scoreboard, activeOverlay, programScene } = this.state;
 		const graphics = [
-			{ Component: Scoreboard, overlayName: 'scoreboard' },
-			{ Component: Commentators, overlayName: 'commentators' },
-			{ Component: BigCamera, overlayName: 'bigcamera' },
-			{ Component: SideSideCamera, overlayName: 'sidesidecamera' },
-			{ Component: ThreeCam, overlayName: 'threecam' },
-			{ Component: Crowd, overlayName: 'crowd' },
-			{ Component: MidSetReport, overlayName: 'midsetreport' },
+			{ Component: Scoreboard, overlayName: 'In-Game' },
+			{ Component: Scoreboard, overlayName: 'In-Game (Reversed Cam)' },
+			{ Component: BigCamera, overlayName: 'Big 2-Cam (Left Cam)' },
+			{ Component: BigCamera, overlayName: 'Big 2-Cam (Right Cam)' },
+			{ Component: SideSideCamera, overlayName: '2 Cam (Players)' },
+			{ Component: SideSideCamera, overlayName: '2 Cam (Comm. + Game)' },
+			{ Component: MidSetReport, overlayName: 'Mid-Set Report (Bo3)' },
+			{ Component: MidSetReport, overlayName: 'Mid-Set Report (Bo5)' },
+			{ Component: ThreeCam, overlayName: '3-Cam (Game + Players)' },
+			{ Component: ThreeCam, overlayName: '3-Cam (Comm. + Players)' },
+			{ Component: Commentators, overlayName: 'Commentators' },
+			{ Component: Crowd, overlayName: 'Crowd Cam (Left)' },
+			{ Component: Crowd, overlayName: 'Crowd Cam (Right)' },
+			{ Component: Intermission, overlayName: 'Intermission' },
 		];
+
+		console.log(programScene);
 
 		return (
 			<React.Fragment>
@@ -49,7 +60,7 @@ class Graphics extends Component {
 	}
 
 	render() {
-		const { scoreboard } = this.state;
+		const { scoreboard, programScene } = this.state;
 
 		return (
 			<React.Fragment>
@@ -72,6 +83,13 @@ class Graphics extends Component {
 					value={this.state.scoreboard}
 					onNewValue={newValue => {
 						this.setState({ scoreboard: newValue });
+					}}
+				/>
+				<NodeCGReplicant
+					replicantName="obs:programScene"
+					value={programScene}
+					onNewValue={newValue => {
+						this.setState({ programScene: newValue });
 					}}
 				/>
 			</React.Fragment>
