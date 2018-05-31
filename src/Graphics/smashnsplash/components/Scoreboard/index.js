@@ -54,12 +54,11 @@ const styles = {
 	},
 	information: {
 		opacity: 0,
-		transition: 'opacity 1s',
 		position: 'relative'
 	},
 	activeInformation: {
 		opacity: 1,
-		transition: 'none'
+		transition: 'opacity 1s',
 	}
 };
 
@@ -78,6 +77,10 @@ const sponsorMap = sponsors.reduce(
 	}),
 	{}
 );
+
+const isOnScoreBoard = (sceneName) => {
+	return sceneName === 'In-Game' || sceneName === 'In-Game (Reversed Cam)';
+}
 
 class Scoreboard extends React.Component {
 
@@ -101,7 +104,7 @@ class Scoreboard extends React.Component {
 				slideInOver: false
 			});
 			setTimeout(() => {
-				this.setState({slideInOver: newSceneReplicant.name === 'Scoreboard'})
+				this.setState({slideInOver: isOnScoreBoard(newSceneReplicant.name)})
 			}, 2500);
 		}
 	}
@@ -122,7 +125,7 @@ class Scoreboard extends React.Component {
 			infoClasses.push(classes.activeInformation);
 		}
 
-		if (programScene !== 'Scoreboard') {
+		if (!isOnScoreBoard(programScene)) {
 			leftClasses.push(classes.leftHidden);
 			rightClasses.push(classes.rightHidden);
 		}
@@ -180,7 +183,7 @@ class Scoreboard extends React.Component {
 			infoClasses.push(classes.activeInformation);
 		}
 
-		if (programScene !== 'Scoreboard') {
+		if (!isOnScoreBoard(programScene)) {
 			leftClasses.push(classes.leftHidden);
 			rightClasses.push(classes.rightHidden);
 		}
