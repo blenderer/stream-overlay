@@ -21,6 +21,7 @@
     "nodecg-utility-obs": "^4.1.2",
     "nodecg-widget-obs": "^4.0.0",
     "prop-types": "^15.6.1",
+    "query-string": "^6.1.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-scripts": "1.1.4"

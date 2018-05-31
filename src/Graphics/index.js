@@ -1,3 +1,4 @@
+import queryString from 'query-string';
 import React, { Component } from 'react';
 import font from './smashnsplash/fonts/big_noodle_titling.woff';
 import NodeCGReplicant from '../Dashboard/NodeCGReplicant';
@@ -26,30 +27,26 @@ class Graphics extends Component {
 	}
 
 	renderGraphics() {
-		const { scoreboard, activeOverlay, programScene } = this.state;
+		const { scoreboard, activeOverlay } = this.state;
 		const graphics = [
-			{ Component: Scoreboard, overlayName: 'In-Game' },
-			{ Component: Scoreboard, overlayName: 'In-Game (Reversed Cam)' },
-			{ Component: BigCamera, overlayName: 'Big 2-Cam (Left Cam)' },
-			{ Component: BigCamera, overlayName: 'Big 2-Cam (Right Cam)' },
-			{ Component: SideSideCamera, overlayName: '2 Cam (Players)' },
-			{ Component: SideSideCamera, overlayName: '2 Cam (Comm. + Game)' },
-			{ Component: MidSetReport, overlayName: 'Mid-Set Report (Bo3)' },
-			{ Component: MidSetReport, overlayName: 'Mid-Set Report (Bo5)' },
-			{ Component: ThreeCam, overlayName: '3-Cam (Game + Players)' },
-			{ Component: ThreeCam, overlayName: '3-Cam (Comm. + Players)' },
+			{ Component: Scoreboard, overlayName: 'Scoreboard' },
+			{ Component: BigCamera, overlayName: 'BigCamera' },
+			{ Component: SideSideCamera, overlayName: 'SideSideCamera' },
+			{ Component: MidSetReport, overlayName: 'MidSetReport' },
+			{ Component: ThreeCam, overlayName: 'ThreeCam' },
 			{ Component: Commentators, overlayName: 'Commentators' },
-			{ Component: Crowd, overlayName: 'Crowd Cam (Left)' },
-			{ Component: Crowd, overlayName: 'Crowd Cam (Right)' },
+			{ Component: Crowd, overlayName: 'Crowd' },
 			{ Component: Intermission, overlayName: 'Intermission' },
 		];
+
+		const scene = queryString.parse(window.location.search).scene;
 
 		return (
 			<React.Fragment>
 				{graphics.map(graphic => (
 					<graphic.Component
 						key={graphic.overlayName}
-						enabled={programScene.name === graphic.overlayName}
+						enabled={scene === graphic.overlayName}
 						scoreboard={scoreboard}
 					/>
 				))}
@@ -75,7 +72,7 @@ class Graphics extends Component {
         `
 					}}
 				/>
-				{scoreboard && programScene ? this.renderGraphics() : null}
+				{scoreboard ? this.renderGraphics() : null}
 				<NodeCGReplicant
 					replicantName="scoreboard"
 					value={this.state.scoreboard}
