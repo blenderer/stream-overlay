@@ -45,18 +45,21 @@ const styles = {
 		transform: 'translateX(0)'
 	},
 	leftHidden: {
-		transform: 'translateX(-640px)'
+		transform: 'translateX(-640px)',
+		transition: 'none',
 	},
 	rightHidden: {
-		transform: 'translateX(640px)'
+		transform: 'translateX(640px)',
+		transition: 'none',
 	},
 	information: {
 		opacity: 0,
 		transition: 'opacity 1s',
 		position: 'relative'
 	},
-	actionInformation: {
-		opacity: 1
+	activeInformation: {
+		opacity: 1,
+		transition: 'none'
 	}
 };
 
@@ -116,7 +119,7 @@ class Scoreboard extends React.Component {
 		const infoClasses = [classes.information];
 
 		if (slideInOver) {
-			infoClasses.push(classes.actionInformation);
+			infoClasses.push(classes.activeInformation);
 		}
 
 		if (programScene !== 'Scoreboard') {
@@ -174,7 +177,7 @@ class Scoreboard extends React.Component {
 		const infoClasses = [classes.information];
 
 		if (slideInOver) {
-			infoClasses.push(classes.actionInformation);
+			infoClasses.push(classes.activeInformation);
 		}
 
 		if (programScene !== 'Scoreboard') {
@@ -295,7 +298,7 @@ class Scoreboard extends React.Component {
 
 		const infoClasses = [classes.information];
 		if (slideInOver) {
-			infoClasses.push(classes.actionInformation);
+			infoClasses.push(classes.activeInformation);
 		}
 
 		return (
