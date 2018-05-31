@@ -9,7 +9,7 @@ class NodeCGReplicant extends React.PureComponent {
     super(props);
 
     this.state = {
-      replicant: window.nodecg.Replicant(props.replicantName, { defaultValue: props.value }),
+      replicant: window.nodecg.Replicant(props.replicantName, { defaultValue: null }),
       ready: false
     };
   }

@@ -90,7 +90,7 @@ class Scoreboard extends Component {
 	render() {
 		const { classes } = this.props;
 		const { value, sceneList, programScene, scoreboard } = this.state;
-
+		
 		return (
 			<React.Fragment>
 				<NodeCGReplicant

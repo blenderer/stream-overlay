@@ -22,7 +22,7 @@ class Graphics extends Component {
 
 	componentDidMount () {
 		window.nodecg.listenFor('obs:transitioning', (data) => {
-			console.log(data);
+			// console.log(data);
 		});
 	}
 
