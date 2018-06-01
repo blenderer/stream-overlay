@@ -18,10 +18,20 @@ import scoreLeftDoubles from '../graphics/Overlays/SNS4_Scoreboard-Doubles-Left.
 import scoreRightDoubles from '../graphics/Overlays/SNS4_Scoreboard-Doubles-Right.png';
 import ggCamBase from '../graphics/Overlays/SNS4-GG_Player-Cam-Base.png';
 import ggCamBo3 from '../graphics/Overlays/SNS4-GG_Player-Cam-Bo3.png';
+import ggCamBo5 from '../graphics/Overlays/SNS4-GG_Player-Cam-Bo5.png';
 import ggBo31L from '../graphics/Overlays/SNS4-GG_PC-Bo3-G1-L.png';
 import ggBo31R from '../graphics/Overlays/SNS4-GG_PC-Bo3-G1-R.png';
 import ggBo32L from '../graphics/Overlays/SNS4-GG_PC-Bo3-G2-L.png';
 import ggBo32R from '../graphics/Overlays/SNS4-GG_PC-Bo3-G2-R.png';
+
+import ggBo51L from '../graphics/Overlays/SNS4-GG_PC-Bo5-G1-L.png';
+import ggBo51R from '../graphics/Overlays/SNS4-GG_PC-Bo5-G1-R.png';
+import ggBo52L from '../graphics/Overlays/SNS4-GG_PC-Bo5-G2-L.png';
+import ggBo52R from '../graphics/Overlays/SNS4-GG_PC-Bo5-G2-R.png';
+import ggBo53L from '../graphics/Overlays/SNS4-GG_PC-Bo5-G3-L.png';
+import ggBo53R from '../graphics/Overlays/SNS4-GG_PC-Bo5-G3-R.png';
+import ggBo54L from '../graphics/Overlays/SNS4-GG_PC-Bo5-G4-L.png';
+import ggBo54R from '../graphics/Overlays/SNS4-GG_PC-Bo5-G4-R.png';
 
 export default {
   cam1,
@@ -44,8 +54,17 @@ export default {
   scoreRightDoubles,
   ggCamBase,
   ggCamBo3,
+  ggCamBo5,
   ggBo31L,
   ggBo31R,
   ggBo32L,
-  ggBo32R
+  ggBo32R,
+  ggBo51L,
+  ggBo51R,
+  ggBo52L,
+  ggBo52R,
+  ggBo53L,
+  ggBo53R,
+  ggBo54L,
+  ggBo54R
 };
