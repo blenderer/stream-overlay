@@ -61,6 +61,10 @@ module.exports = function (nodecg) {
         format: 'bo3',
         player1: '0',
         player2: '0',
+        score: {
+          team1: [false, false, false, false, false],
+          team2: [false, false, false, false, false],
+        },
         bracketPhase: 'Pools Round 1'
       }
     },

@@ -7,6 +7,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import Button from '@material-ui/core/Button';
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -26,6 +27,7 @@ class Game extends Component {
 
   render () {
     const { classes, scoreboard } = this.props;
+		const score = scoreboard.set.score;
 
 		return (
 			<Grid container direction="column" spacing={16}>
@@ -66,89 +68,70 @@ class Game extends Component {
 					</FormControl>
 				</Grid>
 				<Grid item>
-					<Grid container direction="row" spacing={16}>
-						<Grid item>
-							<FormControl component="fieldset">
-								<FormLabel component="legend">
-									Player 1
-								</FormLabel>
-								<RadioGroup
-									aria-label="player-1"
-									name="player-1"
-									value={scoreboard.set.player1}
-									onChange={e => {
-										this.handleChange(
-											'player1',
-											e.target.value
-										);
-									}}
-								>
-									<FormControlLabel
-										value="0"
-										control={<Radio />}
-										label="0"
-									/>
-									<FormControlLabel
-										value="1"
-										control={<Radio />}
-										label="1"
-									/>
-									<FormControlLabel
-										value="2"
-										control={<Radio />}
-										label="2"
-									/>
-									{scoreboard.set.format === 'bo5' && (
-										<FormControlLabel
-											value="3"
-											control={<Radio />}
-											label="3"
-										/>
-									)}
-								</RadioGroup>
-							</FormControl>
-						</Grid>
-						<Grid item>
-							<FormControl component="fieldset">
-								<FormLabel component="legend">
-									Player 2
-								</FormLabel>
-								<RadioGroup
-									aria-label="player-2"
-									name="player-2"
-									value={scoreboard.set.player2}
-									onChange={e => {
-										this.handleChange(
-											'player2',
-											e.target.value
-										);
-									}}
-								>
-									<FormControlLabel
-										value="0"
-										control={<Radio />}
-										label="0"
-									/>
-									<FormControlLabel
-										value="1"
-										control={<Radio />}
-										label="1"
-									/>
-									<FormControlLabel
-										value="2"
-										control={<Radio />}
-										label="2"
-									/>
-									{scoreboard.set.format === 'bo5' && (
-										<FormControlLabel
-											value="3"
-											control={<Radio />}
-											label="3"
-										/>
-									)}
-								</RadioGroup>
-							</FormControl>
-						</Grid>
+					<Button color='secondary' variant='raised' onClick={() => {
+						this.handleChange(
+							'score',
+							{
+								team1: [false, false, false, false, false],
+								team2: [false, false, false, false, false]
+							}
+						);
+					}}>
+						Reset Score
+					</Button>
+				</Grid>
+				<Grid item>
+					<Grid container direction="row">
+						{[0, 1, 2, 3, 4].map(i => {
+
+							let value = '';
+
+							if (score.team1[i]) {
+								value = '1';
+							} else if (score.team2[i]) {
+								value = '2';
+							}
+
+							return (
+								<Grid item key={i}>
+									<Grid container direction='row'>
+										<Grid item>
+											Game {i + 1}:
+										</Grid>
+										<Grid item>
+											<RadioGroup
+												aria-label="gender"
+												name="team1"
+												className={classes.group}
+												value={value}
+												onChange={(e) => {
+													const newScore = {
+														team1: [...score.team1],
+														team2: [...score.team2]
+													};
+
+													if (e.target.value === '1') {
+														newScore.team1[i] = true;
+														newScore.team2[i] = false;
+													} else {
+														newScore.team1[i] = false;
+														newScore.team2[i] = true;
+													}
+
+													this.handleChange(
+														'score',
+														newScore
+													);
+												}}
+											>
+												<FormControlLabel value="1" control={<Radio color="primary" />} label="Player 1" />
+												<FormControlLabel value="2" control={<Radio color="primary" />} label="Player 2" />
+											</RadioGroup>
+										</Grid>
+									</Grid>
+								</Grid>
+							);
+						})}
 					</Grid>
 				</Grid>
 			</Grid>

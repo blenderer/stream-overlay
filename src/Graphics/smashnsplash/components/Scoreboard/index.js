@@ -254,33 +254,29 @@ class Scoreboard extends React.Component {
 	renderScore() {
 		const { scoreboard } = this.props;
 
-		const left = [];
-		const right = [];
+		const left = scoreboard.set.score.team1.filter(point => !!point);
+		const right = scoreboard.set.score.team2.filter(point => !!point);
 
-		for (let i = 0; i < scoreboard.set.player1; i++) {
-			left.push(
-				<GraphicImage
-					style={{ left: i * -18 }}
-					key={`p1-${i}`}
-					src={`build${graphics.scoreLeftFill}`}
-				/>
-			);
-		}
+		const leftScore = left.map((point, index) => (
+			<GraphicImage
+				style={{ left: index * -18 }}
+				key={`p1-${index}`}
+				src={`build${graphics.scoreLeftFill}`}
+			/>
+		));
 
-		for (let i = 0; i < scoreboard.set.player2; i++) {
-			right.push(
-				<GraphicImage
-					style={{ left: 'auto', right: i * -18 }}
-					key={`p2-${i}`}
-					src={`build${graphics.scoreRightFill}`}
-				/>
-			);
-		}
+		const rightScore = right.map((point, index) => (
+			<GraphicImage
+				style={{ left: 'auto', right: index * -18 }}
+				key={`p2-${index}`}
+				src={`build${graphics.scoreRightFill}`}
+			/>
+		));
 
 		return (
 			<React.Fragment>
-				{left}
-				{right}
+				{leftScore}
+				{rightScore}
 			</React.Fragment>
 		);
 	}
