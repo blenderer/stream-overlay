@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _isEqual from 'lodash/isEqual';
+import _cloneDeep from 'lodash/cloneDeep';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Tabs from '@material-ui/core/Tabs';
@@ -47,7 +48,7 @@ class Scoreboard extends Component {
 			draft
 		} = this.state;
 
-		const clean = _isEqual(scoreboard, draft);
+		const clean = JSON.stringify(scoreboard) === JSON.stringify(draft);
 
 		return (
 			<React.Fragment>
@@ -90,7 +91,7 @@ class Scoreboard extends Component {
 	render() {
 		const { classes } = this.props;
 		const { value, sceneList, programScene, scoreboard } = this.state;
-		
+
 		return (
 			<React.Fragment>
 				<NodeCGReplicant
@@ -98,8 +99,8 @@ class Scoreboard extends Component {
 					value={this.state.scoreboard}
 					onNewValue={newValue => {
 						this.setState({
-							scoreboard: newValue,
-							draft: newValue
+							scoreboard: _cloneDeep(newValue),
+							draft: _cloneDeep(newValue)
 						});
 					}}
 				/>

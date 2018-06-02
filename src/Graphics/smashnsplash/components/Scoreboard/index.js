@@ -10,8 +10,14 @@ import SponsorFlag from './SponsorFlag';
 import graphics from '../../scripts/graphics';
 import flags from '../../scripts/flags';
 import sponsors from '../../scripts/sponsors';
+import rivals from 'game-characters/rivalsofaether';
 
 import classNames from 'classnames';
+
+const namesToImage = rivals.reduce((acc, rival) => ({
+	...acc,
+	[rival]: `SNS4_Characters_${rival}.jpg`
+}), {});
 
 const styles = {
 	name: {
@@ -149,6 +155,7 @@ class Scoreboard extends React.Component {
 	        <SponsorFlag
 	          sponsor={player1.sponsor}
 	          country={player1.country}
+						character={player1.character}
 	          style={{
 	            left: 417
 	          }}
@@ -156,6 +163,8 @@ class Scoreboard extends React.Component {
 	        <SponsorFlag
 	          sponsor={player2.sponsor}
 	          country={player2.country}
+						character={player2.character}
+						side='right'
 	          style={{
 	            right: 417
 	          }}
@@ -217,6 +226,7 @@ class Scoreboard extends React.Component {
 					<SponsorFlag
 						sponsor={player1.sponsor}
 						country={player1.country}
+						character={player1.character}
 						style={{
 							left: 417
 						}}
@@ -224,6 +234,8 @@ class Scoreboard extends React.Component {
 					<SponsorFlag
 						sponsor={player3.sponsor}
 						country={player3.country}
+						character={player3.character}
+						side='right'
 						style={{
 							right: 417
 						}}
@@ -305,7 +317,7 @@ class Scoreboard extends React.Component {
 				{scoreboard.format === 'singles'
 					? this.renderSingles()
 					: this.renderDoubles()}
-				<div className={classNames(infoClasses)}>
+				<div style={{height: '100%'}} className={classNames(infoClasses)}>
 				{scoreboard.set.format === 'bo3'
 					? this.renderBo3()
 					: this.renderBo5()}

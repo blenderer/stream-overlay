@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 import flags from '../../scripts/flags';
 import sponsors from '../../scripts/sponsors';
+import rivals from 'game-characters/rivalsofaether';
 
 const flagMap = flags.reduce(
 	(map, flagName) => ({
@@ -22,6 +23,12 @@ const sponsorMap = sponsors.reduce(
 	{}
 );
 
+
+const namesToImage = rivals.reduce((acc, rival) => ({
+	...acc,
+	[rival]: `SNS4_Characters_${rival}.jpg`
+}), {});
+
 class SponsorFlag extends React.Component {
 
   state = {
@@ -31,16 +38,14 @@ class SponsorFlag extends React.Component {
   };
 
   static getDerivedStateFromProps (props) {
-    const { country, sponsor } = props;
+    const { country, sponsor, character } = props;
     const images = [];
 
-    if (flagMap[country]) {
-      images.push(`build/flags/${country}.png`);
-    }
+    images.push(`build/flags/${country}.png`);
 
-    if (sponsorMap[sponsor]) {
-      images.push(`build/logos/${sponsor}.png`);
-    }
+    images.push(`build/logos/${sponsor}.png`);
+
+		images.push(`build/characters/${namesToImage[character]}`);
 
     return { images };
   }
@@ -102,14 +107,21 @@ class SponsorFlag extends React.Component {
   }
 
 	render() {
-		const { sponsor, country, classes, ...restOfProps } = this.props;
+		const { sponsor, country, classes, side, style, ...restOfProps } = this.props;
     const { images, currentImageIndex, leaving } = this.state;
+
+		const newStyle = { ...style };
+
+		if (side === 'right' && images[currentImageIndex].includes('characters')) {
+			newStyle.transform = 'scale(-1, 1)';
+		}
 
     return (
       <img
         className={classNames(classes.image, {[classes.leaving]: leaving})}
         src={images[currentImageIndex]}
         alt=""
+				style={newStyle}
         {...restOfProps}
       />
     );
