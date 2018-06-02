@@ -55,12 +55,12 @@ class Commentators extends PureComponent {
 							<TwitchName>
 								{commentator1.twitch}
 							</TwitchName>
-						) : null}
+						) : ' '}
 						{commentator1.twitter ? (
 							<React.Fragment>
 								@{commentator1.twitter}
 							</React.Fragment>
-						) : null}
+						) : ' '}
 					</FadeRotator>
 				</div>
 				<div className={classes.twitterTag} style={{right: 156, left: 'auto'}}>
@@ -69,12 +69,12 @@ class Commentators extends PureComponent {
 							<TwitchName>
 								{commentator2.twitch}
 							</TwitchName>
-						) : null}
+						) : ' '}
 						{commentator2.twitter ? (
 							<React.Fragment>
 								@{commentator2.twitter}
 							</React.Fragment>
-						) : null}
+						) : ' '}
 					</FadeRotator>
 				</div>
 			</Graphic>
