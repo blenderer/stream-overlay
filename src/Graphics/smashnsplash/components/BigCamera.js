@@ -15,7 +15,7 @@ const styles = {
 
 class BigCamera extends PureComponent {
 	render() {
-		const { scoreboard, classes, enabled } = this.props;
+		const { classes, enabled } = this.props;
 
 
 		return (

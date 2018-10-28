@@ -11,7 +11,7 @@ const styles = {
 
 class MidSetReport extends PureComponent {
 	render() {
-		const { scoreboard, classes, enabled } = this.props;
+		const { scoreboard, enabled } = this.props;
 
 		const player1 = [];
 		const player2 = [];

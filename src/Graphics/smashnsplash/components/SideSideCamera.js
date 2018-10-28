@@ -15,7 +15,7 @@ const styles = {
 
 class SideSideCamera extends PureComponent {
 	render() {
-		const { scoreboard, classes, enabled } = this.props;
+		const { classes, enabled } = this.props;
 
 
 		return (

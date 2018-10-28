@@ -3,7 +3,6 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
@@ -21,7 +20,7 @@ class Event extends Component {
   }
 
   render () {
-    const { classes, scoreboard } = this.props;
+    const { scoreboard } = this.props;
 
     return (
       <Grid item container direction='column' spacing={16}>

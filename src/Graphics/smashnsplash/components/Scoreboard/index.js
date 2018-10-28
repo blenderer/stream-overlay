@@ -1,23 +1,13 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Graphic from '../../../components/Graphic';
 import GraphicImage from '../../../components/GraphicImage';
-import NodeCGReplicant from '../../../../Dashboard/NodeCGReplicant';
-import TwitchName from '../../../components/TwitchName';
 import Tag from './Tag';
 import SponsorFlag from './SponsorFlag';
 
 import graphics from '../../scripts/graphics';
-import flags from '../../scripts/flags';
-import sponsors from '../../scripts/sponsors';
-import rivals from 'game-characters/rivalsofaether';
 
 import classNames from 'classnames';
-
-const namesToImage = rivals.reduce((acc, rival) => ({
-	...acc,
-	[rival]: `SNS4_Characters_${rival}.jpg`
-}), {});
 
 const styles = {
 	name: {
@@ -67,22 +57,6 @@ const styles = {
 		transition: 'opacity 1s',
 	}
 };
-
-const flagMap = flags.reduce(
-	(map, flagName) => ({
-		...map,
-		[flagName]: true
-	}),
-	{}
-);
-
-const sponsorMap = sponsors.reduce(
-	(map, sponsorName) => ({
-		...map,
-		[sponsorName]: true
-	}),
-	{}
-);
 
 const isOnScoreBoard = (sceneName) => {
 	return sceneName === 'In-Game' || sceneName === 'In-Game (Reversed Cam)';
@@ -305,7 +279,7 @@ class Scoreboard extends React.Component {
 
 	render() {
 		const { scoreboard, enabled, classes } = this.props;
-		const { programScene, slideInOver } = this.state;
+		const { slideInOver } = this.state;
 
 		const infoClasses = [classes.information];
 		if (slideInOver) {

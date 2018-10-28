@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 
 import Commentator from './Commentator';
 
@@ -21,7 +20,7 @@ class Commentary extends Component {
 	};
 
 	render () {
-		const { classes, scoreboard } = this.props;
+		const { scoreboard } = this.props;
 
 		return (
 			<Grid container direction="row" spacing={16}>

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 import _compact from 'lodash/compact';

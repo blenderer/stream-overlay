@@ -11,7 +11,7 @@ const styles = {
 
 class Intermission extends PureComponent {
 	render() {
-		const { scoreboard, classes, enabled } = this.props;
+		const { enabled } = this.props;
 
 
 		return (

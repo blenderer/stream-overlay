@@ -1,27 +1,8 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 import classNames from 'classnames';
-
-import flags from '../../scripts/flags';
-import sponsors from '../../scripts/sponsors';
 import rivals from 'game-characters/rivalsofaether';
-
-const flagMap = flags.reduce(
-	(map, flagName) => ({
-		...map,
-		[flagName]: true
-	}),
-	{}
-);
-
-const sponsorMap = sponsors.reduce(
-	(map, sponsorName) => ({
-		...map,
-		[sponsorName]: true
-	}),
-	{}
-);
 
 
 const namesToImage = rivals.reduce((acc, rival) => ({

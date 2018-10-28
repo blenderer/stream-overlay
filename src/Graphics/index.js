@@ -27,7 +27,7 @@ class Graphics extends Component {
 	}
 
 	renderGraphics() {
-		const { scoreboard, activeOverlay } = this.state;
+		const { scoreboard } = this.state;
 		const graphics = [
 			{ Component: Scoreboard, overlayName: 'Scoreboard' },
 			{ Component: BigCamera, overlayName: 'BigCamera' },

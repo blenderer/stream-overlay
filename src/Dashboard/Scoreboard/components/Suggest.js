@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Downshift from 'downshift';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -35,7 +32,7 @@ function renderSuggestion({
 
 class Suggest extends Component {
 	render() {
-		const { classes, onChange, items, inputProps, inputValue } = this.props;
+		const { classes, items, inputProps, inputValue } = this.props;
 
 		return (
 			<Downshift

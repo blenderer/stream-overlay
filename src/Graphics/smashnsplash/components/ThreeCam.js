@@ -15,7 +15,7 @@ const styles = {
 
 class ThreeCam extends PureComponent {
 	render() {
-		const { scoreboard, classes, enabled } = this.props;
+		const { enabled } = this.props;
 
 
 		return (

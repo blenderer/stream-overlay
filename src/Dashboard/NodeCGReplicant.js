@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import _isEqual from 'lodash/isEqual';
@@ -38,8 +38,6 @@ class NodeCGReplicant extends React.PureComponent {
 
   componentDidMount () {
     const {
-      replicantName,
-      value,
       onNewValue
     } = this.props;
 

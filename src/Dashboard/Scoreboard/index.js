@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import _isEqual from 'lodash/isEqual';
 import _cloneDeep from 'lodash/cloneDeep';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
@@ -39,11 +36,8 @@ class Scoreboard extends Component {
 	};
 
 	renderScoreboard() {
-		const { classes } = this.props;
 		const {
 			value,
-			sceneList,
-			programScene,
 			scoreboard,
 			draft
 		} = this.state;
@@ -89,8 +83,7 @@ class Scoreboard extends Component {
 	}
 
 	render() {
-		const { classes } = this.props;
-		const { value, sceneList, programScene, scoreboard } = this.state;
+		const { sceneList, programScene } = this.state;
 
 		return (
 			<React.Fragment>
