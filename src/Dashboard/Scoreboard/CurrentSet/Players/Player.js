@@ -6,7 +6,7 @@ import Suggest from '../../components/Suggest';
 import flags from '../../../../Graphics/smashnsplash/scripts/flags';
 import sponsors from '../../../../Graphics/smashnsplash/scripts/sponsors';
 
-import rivals from 'game-characters/rivalsofaether';
+import characters from 'game-characters/smashultimate';
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -75,7 +75,7 @@ class Player extends Component {
 							onChange={selection =>
 								this.onChange('character', selection)
 							}
-							items={rivals}
+							items={characters}
               inputValue={character}
 						/>
 					</Grid>
