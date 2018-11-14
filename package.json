@@ -60,6 +60,18 @@
         "width": 1280,
         "height": 720
       }
+    ],
+    "assetCategories": [
+      {
+        "name": "characters",
+        "title": "Characters",
+        "allowedTypes": [
+          "jpg",
+          "jpeg",
+          "gif",
+          "png"
+        ]
+      }
     ]
   },
   "repository": "https://github.com/nodecg/nodecg.git",
