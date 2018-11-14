@@ -49,7 +49,7 @@ class Scoreboard extends Component {
 				<Button
 					disabled={clean}
 					onClick={this.save}
-					variant="raised"
+					variant="contained"
 					color="primary"
 				>
 					Save

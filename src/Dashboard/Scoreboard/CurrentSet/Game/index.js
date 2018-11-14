@@ -67,7 +67,7 @@ class Game extends Component {
 					</FormControl>
 				</Grid>
 				<Grid item>
-					<Button color='secondary' variant='raised' onClick={() => {
+					<Button color='secondary' variant='contained' onClick={() => {
 						this.handleChange(
 							'score',
 							{

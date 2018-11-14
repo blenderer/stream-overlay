@@ -56,7 +56,7 @@ class Players extends Component {
 				<Grid container direction="row" spacing={16}>
 					<Grid item>
 						<Button
-							variant="raised"
+							variant="contained"
 							color="secondary"
 							onClick={this.swapSides}
 						>
