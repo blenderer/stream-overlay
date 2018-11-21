@@ -17,7 +17,14 @@ class Scoreboard extends Component {
 		value: 0,
 		sceneList: [],
 		programScene: {}
-	};
+  };
+  
+  componentDidMount () {
+    const characters = window.nodecg.Replicant('assets:characters');
+    characters.on('change', (newValue, oldValue) => {
+      this.setState({url: newValue[20].url});
+    })
+  }
 
 	save = () => {
 		this.setState({ scoreboard: this.state.draft });
@@ -39,13 +46,15 @@ class Scoreboard extends Component {
 		const {
 			value,
 			scoreboard,
-			draft
+      draft,
+      url
 		} = this.state;
 
 		const clean = JSON.stringify(scoreboard) === JSON.stringify(draft);
 
 		return (
 			<React.Fragment>
+        <img src={url} alt=""/>
 				<Button
 					disabled={clean}
 					onClick={this.save}

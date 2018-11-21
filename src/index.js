@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Dashboard from './Dashboard';
 import Graphics from './Graphics';
+import AssetManager from './AssetManager';
 import registerServiceWorker from './registerServiceWorker';
 
 if (document.getElementById('dashboard')) {
@@ -10,6 +11,9 @@ if (document.getElementById('dashboard')) {
 }
 if (document.getElementById('graphics')) {
   ReactDOM.render(<Graphics />, document.getElementById('graphics'));
+}
+if (document.getElementById('assetmanager')) {
+  ReactDOM.render(<AssetManager />, document.getElementById('assetmanager'));
 }
 
 registerServiceWorker();

@@ -36,6 +36,7 @@
   "files": [
     "dashboard",
     "graphics",
+    "assetmanager",
     "extension.js",
     "extension"
   ],
@@ -53,6 +54,7 @@
         "file": "index.html",
         "headerColor": "#9f9bbd"
       }
+      
     ],
     "graphics": [
       {
@@ -65,6 +67,36 @@
       {
         "name": "characters",
         "title": "Characters",
+        "allowedTypes": [
+          "jpg",
+          "jpeg",
+          "gif",
+          "png"
+        ]
+      },
+      {
+        "name": "playerSponsors",
+        "title": "Player Sponsors",
+        "allowedTypes": [
+          "jpg",
+          "jpeg",
+          "gif",
+          "png"
+        ]
+      },
+      {
+        "name": "eventSponsors",
+        "title": "Event Sponsors",
+        "allowedTypes": [
+          "jpg",
+          "jpeg",
+          "gif",
+          "png"
+        ]
+      },
+      {
+        "name": "regionFlags",
+        "title": "Region Flags",
         "allowedTypes": [
           "jpg",
           "jpeg",
