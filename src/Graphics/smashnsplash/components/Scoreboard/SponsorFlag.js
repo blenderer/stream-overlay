@@ -22,7 +22,7 @@ class SponsorFlag extends React.Component {
     const { country, sponsor, character } = props;
     const images = [];
 
-    images.push(`build/flags/${country}.png`);
+    images.push(country);
 
     images.push(`build/logos/${sponsor}.png`);
 

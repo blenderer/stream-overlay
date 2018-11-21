@@ -12,8 +12,5 @@ if (document.getElementById('dashboard')) {
 if (document.getElementById('graphics')) {
   ReactDOM.render(<Graphics />, document.getElementById('graphics'));
 }
-if (document.getElementById('assetmanager')) {
-  ReactDOM.render(<AssetManager />, document.getElementById('assetmanager'));
-}
 
 registerServiceWorker();

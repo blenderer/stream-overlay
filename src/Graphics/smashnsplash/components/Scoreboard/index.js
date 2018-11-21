@@ -4,6 +4,8 @@ import Graphic from '../../../components/Graphic';
 import GraphicImage from '../../../components/GraphicImage';
 import Tag from './Tag';
 import SponsorFlag from './SponsorFlag';
+import _keyBy from 'lodash/keyBy';
+import NodeCGReplicant from "../../../../Dashboard/NodeCGReplicant";
 
 import graphics from '../../scripts/graphics';
 
@@ -67,7 +69,8 @@ class Scoreboard extends React.Component {
 	state = {
 		programScene: null,
 		replicant: window.nodecg.Replicant('obs:programScene', { defaultValue: null }),
-		slideInOver: true
+    slideInOver: true,
+    regionFlags: [],
 	}
 
 	componentDidMount () {
@@ -91,7 +94,9 @@ class Scoreboard extends React.Component {
 
 	renderSingles() {
 		const { classes, scoreboard } = this.props;
-		const { programScene, slideInOver } = this.state;
+    const { programScene, slideInOver, regionFlags } = this.state;
+    
+    const regionFlagsByName = _keyBy(regionFlags, 'name');
 
 		const player1 = scoreboard.players[0];
 		const player2 = scoreboard.players[1];
@@ -108,10 +113,17 @@ class Scoreboard extends React.Component {
 		if (!isOnScoreBoard(programScene)) {
 			leftClasses.push(classes.leftHidden);
 			rightClasses.push(classes.rightHidden);
-		}
-
+    }
+    
 		return (
 			<React.Fragment>
+        <NodeCGReplicant
+          replicantName="assets:regionFlags"
+          value={regionFlags}
+          onNewValue={newValue => {
+            this.setState({ regionFlags: newValue });
+          }}
+        />
 				<GraphicImage src={`build${graphics.singlesBase}`} />
 				<GraphicImage className={leftClasses} src={`build${graphics.scoreLeftSingles}`} />
 				<GraphicImage className={rightClasses} src={`build${graphics.scoreRightSingles}`} />
@@ -128,7 +140,7 @@ class Scoreboard extends React.Component {
 	        />
 	        <SponsorFlag
 	          sponsor={player1.sponsor}
-	          country={player1.country}
+	          country={regionFlagsByName[player1.country] ? regionFlagsByName[player1.country].url : ''}
 						character={player1.character}
 	          style={{
 	            left: 417
@@ -136,7 +148,7 @@ class Scoreboard extends React.Component {
 	        />
 	        <SponsorFlag
 	          sponsor={player2.sponsor}
-	          country={player2.country}
+	          country={regionFlagsByName[player2.country] ? regionFlagsByName[player2.country].url : ''}
 						character={player2.character}
 						side='right'
 	          style={{
