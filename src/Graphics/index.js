@@ -11,6 +11,8 @@ import ThreeCam from './smashnsplash/components/ThreeCam';
 import Crowd from './smashnsplash/components/Crowd';
 import MidSetReport from './smashnsplash/components/MidSetReport';
 
+import { AssetCacheProvider } from '../context/AssetCache';
+
 class Graphics extends Component {
 	state = {
 		scoreboard: null,
@@ -58,7 +60,7 @@ class Graphics extends Component {
 		const { scoreboard, programScene } = this.state;
 
 		return (
-			<React.Fragment>
+			<AssetCacheProvider>
 				<style
 					dangerouslySetInnerHTML={{
 						__html: `
@@ -87,7 +89,7 @@ class Graphics extends Component {
 						this.setState({ programScene: newValue });
 					}}
 				/>
-			</React.Fragment>
+			</AssetCacheProvider>
 		);
 	}
 }

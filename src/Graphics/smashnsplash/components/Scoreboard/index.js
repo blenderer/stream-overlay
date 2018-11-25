@@ -6,6 +6,7 @@ import Tag from './Tag';
 import SponsorFlag from './SponsorFlag';
 import _keyBy from 'lodash/keyBy';
 import NodeCGReplicant from "../../../../Dashboard/NodeCGReplicant";
+import { withAssetCache } from '../../../../context/AssetCache';
 
 import graphics from '../../scripts/graphics';
 
@@ -93,13 +94,15 @@ class Scoreboard extends React.Component {
 	}
 
 	renderSingles() {
-		const { classes, scoreboard } = this.props;
+		const { classes, scoreboard, assetCache } = this.props;
     const { programScene, slideInOver, regionFlags } = this.state;
     
     const regionFlagsByName = _keyBy(regionFlags, 'name');
 
 		const player1 = scoreboard.players[0];
-		const player2 = scoreboard.players[1];
+    const player2 = scoreboard.players[1];
+
+    console.log(assetCache.getAssetUrl(player1.country, 'regionFlags'))
 
 		const leftClasses = [classes.score];
 		const rightClasses = [classes.score];
@@ -316,4 +319,4 @@ class Scoreboard extends React.Component {
 	}
 }
 
-export default withStyles(styles)(Scoreboard);
+export default withAssetCache(withStyles(styles)(Scoreboard));
