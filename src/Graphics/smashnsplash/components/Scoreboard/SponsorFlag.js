@@ -2,13 +2,6 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 import classNames from 'classnames';
-import rivals from 'game-characters/rivalsofaether';
-
-
-const namesToImage = rivals.reduce((acc, rival) => ({
-	...acc,
-	[rival]: `SNS4_Characters_${rival}.jpg`
-}), {});
 
 class SponsorFlag extends React.Component {
 

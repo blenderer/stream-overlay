@@ -169,9 +169,7 @@ class Scoreboard extends React.Component {
     const player4 = scoreboard.players[3];
 
     const player1Assets = getPlayerAssetUrls(assetCache, player1);
-    const player2Assets = getPlayerAssetUrls(assetCache, player2);
     const player3Assets = getPlayerAssetUrls(assetCache, player3);
-    const player4Assets = getPlayerAssetUrls(assetCache, player4);
 
     const leftClasses = [classes.score];
     const rightClasses = [classes.score];
