@@ -3,8 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Suggest from '../components/Suggest';
 
-import sponsors from '../../../Graphics/smashnsplash/scripts/sponsors';
-
+import { withAssetCache } from '../../../context/AssetCache';
 import { withStyles } from '@material-ui/core/styles';
 
 class Commentator extends Component {
@@ -16,7 +15,7 @@ class Commentator extends Component {
 	};
 
 	render() {
-		const { classes, number } = this.props;
+		const { classes, number, assetCache } = this.props;
 		const { sponsor, name, twitter, twitch } = this.props.model;
 
 		return (
@@ -34,7 +33,7 @@ class Commentator extends Component {
 							onChange={selection =>
 								this.onChange('sponsor', selection)
 							}
-							items={sponsors}
+							items={assetCache.nameList.playerSponsors}
               inputValue={sponsor}
 						/>
 					</Grid>
@@ -81,4 +80,4 @@ const styles = theme => ({
 	}
 });
 
-export default withStyles(styles)(Commentator);
+export default withAssetCache(withStyles(styles)(Commentator));

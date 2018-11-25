@@ -1,13 +1,8 @@
 import React, { Component } from "react";
-import _keyBy from 'lodash/keyBy';
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Suggest from "../../components/Suggest";
 import { withAssetCache } from '../../../../context/AssetCache';
-
-import sponsors from "../../../../Graphics/smashnsplash/scripts/sponsors";
-
-import characters from "game-characters/smashultimate";
 
 import { getPlayerAssetUrls } from '../../../../helpers/getPlayerAssetUrls';
 
