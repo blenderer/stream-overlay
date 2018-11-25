@@ -24,9 +24,9 @@ class SponsorFlag extends React.Component {
 
     images.push(country);
 
-    images.push(`build/logos/${sponsor}.png`);
+    images.push(sponsor);
 
-		images.push(`build/characters/${namesToImage[character]}`);
+		images.push(character);
 
     return { images };
   }

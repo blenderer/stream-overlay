@@ -4,7 +4,6 @@ import Graphic from '../../../components/Graphic';
 import GraphicImage from '../../../components/GraphicImage';
 import Tag from './Tag';
 import SponsorFlag from './SponsorFlag';
-import _keyBy from 'lodash/keyBy';
 import NodeCGReplicant from "../../../../Dashboard/NodeCGReplicant";
 import { withAssetCache } from '../../../../context/AssetCache';
 import { getPlayerAssetUrls } from '../../../../helpers/getPlayerAssetUrls';
@@ -72,7 +71,6 @@ class Scoreboard extends React.Component {
 		programScene: null,
 		replicant: window.nodecg.Replicant('obs:programScene', { defaultValue: null }),
     slideInOver: true,
-    regionFlags: [],
 	}
 
 	componentDidMount () {
@@ -96,14 +94,12 @@ class Scoreboard extends React.Component {
 
 	renderSingles() {
 		const { classes, scoreboard, assetCache } = this.props;
-    const { programScene, slideInOver, regionFlags } = this.state;
+    const { programScene, slideInOver } = this.state;
     
-    const regionFlagsByName = _keyBy(regionFlags, 'name');
-
-		const player1 = scoreboard.players[0];
+    const player1 = scoreboard.players[0];
+    const player1Assets = getPlayerAssetUrls(assetCache, player1);
     const player2 = scoreboard.players[1];
-
-    console.log(getPlayerAssetUrls(assetCache, player1));
+    const player2Assets = getPlayerAssetUrls(assetCache, player2);
 
 		const leftClasses = [classes.score];
 		const rightClasses = [classes.score];
@@ -121,13 +117,6 @@ class Scoreboard extends React.Component {
     
 		return (
 			<React.Fragment>
-        <NodeCGReplicant
-          replicantName="assets:regionFlags"
-          value={regionFlags}
-          onNewValue={newValue => {
-            this.setState({ regionFlags: newValue });
-          }}
-        />
 				<GraphicImage src={`build${graphics.singlesBase}`} />
 				<GraphicImage className={leftClasses} src={`build${graphics.scoreLeftSingles}`} />
 				<GraphicImage className={rightClasses} src={`build${graphics.scoreRightSingles}`} />
@@ -143,17 +132,17 @@ class Scoreboard extends React.Component {
 	          style={{ right: 2 }}
 	        />
 	        <SponsorFlag
-	          sponsor={player1.sponsor}
-	          country={regionFlagsByName[player1.country] ? regionFlagsByName[player1.country].url : ''}
-						character={player1.character}
+	          sponsor={player1Assets.sponsor}
+	          country={player1Assets.country}
+						character={player1Assets.character}
 	          style={{
 	            left: 417
 	          }}
 	        />
 	        <SponsorFlag
-	          sponsor={player2.sponsor}
-	          country={regionFlagsByName[player2.country] ? regionFlagsByName[player2.country].url : ''}
-						character={player2.character}
+	          sponsor={player2Assets.sponsor}
+	          country={player2Assets.country}
+						character={player2Assets.character}
 						side='right'
 	          style={{
 	            right: 417
