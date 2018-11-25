@@ -7,6 +7,7 @@ import SponsorFlag from './SponsorFlag';
 import _keyBy from 'lodash/keyBy';
 import NodeCGReplicant from "../../../../Dashboard/NodeCGReplicant";
 import { withAssetCache } from '../../../../context/AssetCache';
+import { getPlayerAssetUrls } from '../../../../helpers/getPlayerAssetUrls';
 
 import graphics from '../../scripts/graphics';
 
@@ -102,7 +103,7 @@ class Scoreboard extends React.Component {
 		const player1 = scoreboard.players[0];
     const player2 = scoreboard.players[1];
 
-    console.log(assetCache.getAssetUrl(player1.country, 'regionFlags'))
+    console.log(getPlayerAssetUrls(assetCache, player1));
 
 		const leftClasses = [classes.score];
 		const rightClasses = [classes.score];
