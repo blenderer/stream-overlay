@@ -45,7 +45,7 @@
     "nodecg-bundle"
   ],
   "nodecg": {
-    "compatibleRange": "~1.2.2",
+    "compatibleRange": "~1.3.0",
     "dashboardPanels": [
       {
         "name": "scoreboard",
