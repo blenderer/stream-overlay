@@ -1,5 +1,5 @@
 {
-  "name": "gooshi-scoreboard",
+  "name": "blenderer-stream",
   "version": "0.0.0",
   "description": "",
   "author": {
@@ -49,7 +49,7 @@
     "dashboardPanels": [
       {
         "name": "scoreboard",
-        "title": "Scoreboard",
+        "title": "Blenderer",
         "width": 4,
         "file": "index.html",
         "headerColor": "#9f9bbd"
