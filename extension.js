@@ -5,7 +5,17 @@ const OBSUtility = require('nodecg-utility-obs');
 module.exports = function (nodecg) {
   const obs = new OBSUtility(nodecg);
 
-  nodecg.listenFor('switch-scene', (value, ack) => {
+  nodecg.listenFor('bobs:send', (props, ack) => {
+    return obs.send(props.eventName, props).then(res => {
+      if (ack && !ack.handled) {
+          ack(null, res);
+      }
+    }).catch(err => {
+      ack(err);
+    });
+  });
+
+  nodecg.listenFor('switch-scene', (value) => {
     obs.setCurrentScene({'scene-name': value});
   });
 
